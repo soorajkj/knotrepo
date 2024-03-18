@@ -1,0 +1,118 @@
+"use client";
+
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof ButtonStyles> {
+  asChild?: boolean;
+  loading?: boolean;
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, ref) => {
+    const {
+      children,
+      asChild,
+      type = "button",
+      block = false,
+      variant = "primary",
+      className,
+      ...rest
+    } = props;
+
+    const Comp = asChild ? Slot : "button";
+
+    return (
+      <Comp
+        type={type}
+        ref={ref}
+        className={cn(ButtonStyles({ variant, block, className }))}
+        {...rest}
+      >
+        {children}
+      </Comp>
+    );
+  }
+);
+
+const ButtonStyles = cva(
+  [
+    "inline-flex",
+    "h-10",
+    "cursor-pointer",
+    "select-none",
+    "appearance-none",
+    "items-center",
+    "justify-center",
+    "space-x-2",
+    "overflow-hidden",
+    "whitespace-nowrap",
+    "rounded-lg",
+    "border",
+    "border-transparent",
+    "px-4",
+    "py-2.5",
+    "text-sm",
+    "font-semibold",
+    "leading-none",
+    "outline-none",
+    "transition-all",
+    "disabled:pointer-events-none",
+  ],
+  {
+    variants: {
+      block: {
+        true: "w-full",
+        false: "w-auto",
+      },
+      variant: {
+        primary: [
+          "bg-violet-600",
+          "text-white",
+          "hover:bg-violet-700",
+          "focus-visible:ring-2",
+          "focus-visible:ring-violet-500",
+          "focus-visible:ring-offset-2",
+          "active:opacity-80",
+          "dark:bg-violet-500",
+          "dark:hover:bg-violet-600",
+        ],
+        secondary: [
+          "bg-slate-200",
+          "border-slate-300",
+          "text-slate-700",
+          "hover:bg-slate-300",
+          "focus-visible:ring-2",
+          "focus-visible:ring-violet-500",
+          "focus-visible:ring-offset-2",
+          "active:opacity-80",
+          "dark:bg-slate-800",
+          "dark:border-slate-700",
+          "dark:text-slate-300",
+          "dark:hover:bg-slate-700",
+        ],
+        outline: [
+          "border-slate-300",
+          "text-slate-700",
+          "hover:bg-slate-50",
+          "focus-visible:ring-2",
+          "focus-visible:ring-violet-500",
+          "focus-visible:ring-offset-2",
+          "active:opacity-80",
+          "dark:border-slate-700",
+          "dark:text-slate-400",
+          "dark:hover:bg-slate-800",
+        ],
+        ghost: [""],
+      },
+    },
+  }
+);
+
+Button.displayName = "Button";
+
+export default Button;
