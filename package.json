@@ -51,6 +51,6 @@
     "sass": "^1.71.1",
     "tailwindcss": "^3.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5"
+    "typescript": "^5.3.3"
   }
 }

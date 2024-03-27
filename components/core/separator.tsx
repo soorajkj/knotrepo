@@ -30,13 +30,13 @@ const Separator = React.forwardRef<
 
 const SeparatorStyles = cva(
   [
-    "bg-slate-200",
+    "bg-zinc-200",
     "pointer-events-none",
     "relative",
     "flex",
     "shrink-0",
     "items-center",
-    "dark:bg-slate-700",
+    "dark:bg-zinc-700",
   ],
   {
     variants: {

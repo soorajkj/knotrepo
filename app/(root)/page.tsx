@@ -1,12 +1,5 @@
-import { Fragment } from "react";
-import Container from "@/components/core/Container";
+import * as React from "react";
 
 export default function Page() {
-  return (
-    <Fragment>
-      <section className="relative">
-        <Container></Container>
-      </section>
-    </Fragment>
-  );
+  return <React.Fragment></React.Fragment>;
 }

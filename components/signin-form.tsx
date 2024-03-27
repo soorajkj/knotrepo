@@ -1,44 +1,28 @@
 "use client";
 
+import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { signupSchema } from "@/lib/validations";
-import Button from "@/components/core/Button";
-import Form from "@/components/core/Form";
-import Input from "@/components/core/Input";
+import { signinSchema } from "@/lib/validations";
+import Button from "@/components/core/button";
+import Form from "@/components/core/form";
+import Input from "@/components/core/input";
+import Typography from "@/components/core/typography";
 
-type SignupFormFields = z.infer<typeof signupSchema>;
+type SigninFormFields = z.infer<typeof signinSchema>;
 
-export default function SignupForm() {
-  const form = useForm<SignupFormFields>({
-    resolver: zodResolver(signupSchema),
-    defaultValues: { email: "", username: "", password: "" },
+export default function SigninForm() {
+  const form = useForm<SigninFormFields>({
+    resolver: zodResolver(signinSchema),
+    defaultValues: { username: "", password: "" },
   });
 
-  const processForm = async (_formData: SignupFormFields) => {};
+  const processForm = async (_formData: SigninFormFields) => {};
 
   return (
     <Form.FormRoot {...form}>
       <form className="space-y-6" onSubmit={form.handleSubmit(processForm)}>
-        <Form.FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <Form.FormItem className="flex flex-col">
-              <Form.FormLabel>Email</Form.FormLabel>
-              <Form.FormMessage className="order-3" />
-              <Form.FormControl>
-                <Input
-                  type="email"
-                  placeholder="example@gmail.com"
-                  autoComplete="off"
-                  {...field}
-                />
-              </Form.FormControl>
-            </Form.FormItem>
-          )}
-        />
         <Form.FormField
           control={form.control}
           name="username"
@@ -49,7 +33,7 @@ export default function SignupForm() {
               <Form.FormControl>
                 <Input
                   type="text"
-                  placeholder="yourname"
+                  placeholder="sooraj"
                   autoComplete="off"
                   {...field}
                 />
@@ -62,7 +46,12 @@ export default function SignupForm() {
           name="password"
           render={({ field }) => (
             <Form.FormItem className="flex flex-col">
-              <Form.FormLabel>Password</Form.FormLabel>
+              <div className="flex items-center justify-between">
+                <Form.FormLabel>Password</Form.FormLabel>
+                <Typography.Text variant="sm/normal">
+                  <Link href="/">Forgot password</Link>
+                </Typography.Text>
+              </div>
               <Form.FormMessage className="order-3" />
               <Form.FormControl>
                 <Input
@@ -76,7 +65,7 @@ export default function SignupForm() {
           )}
         />
         <Button type="submit" block className="!mt-12">
-          Get started
+          <span>Sign in</span>
         </Button>
       </form>
     </Form.FormRoot>

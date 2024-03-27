@@ -3,7 +3,7 @@ import type * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
 import * as ReactHookForm from "react-hook-form";
 import { cn } from "@/lib/utils";
-import Label from "@/components/core/Label";
+import Label from "@/components/core/label";
 
 const FormRoot = ReactHookForm.FormProvider;
 

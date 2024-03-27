@@ -1,5 +1,5 @@
-import Button from "@/components/core/Button";
-import Icon from "@/components/core/Icon";
+import Button from "@/components/core/button";
+import Icon from "@/components/core/icon";
 
 export default function SignupWithOAuth() {
   return (

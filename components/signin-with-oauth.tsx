@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
-import Button from "@/components/core/Button";
-import Icon from "@/components/core/Icon";
+import * as React from "react";
+import Button from "@/components/core/button";
+import Icon from "@/components/core/icon";
 
-export default function ContinueWithOAuth() {
+export default function SigninWithOAuth() {
   return (
     <div className="flex flex-col gap-4">
       <Button variant="secondary" block>

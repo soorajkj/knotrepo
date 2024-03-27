@@ -1,11 +1,9 @@
-"use client";
-
-import { useCallback, useEffect, useRef } from "react";
+import * as React from "react";
 
 export default function useIsMounted() {
-  const isMounted = useRef(false);
+  const isMounted = React.useRef(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     isMounted.current = true;
 
     return () => {
@@ -13,5 +11,5 @@ export default function useIsMounted() {
     };
   }, []);
 
-  return useCallback(() => isMounted.current, []);
+  return React.useCallback(() => isMounted.current, []);
 }

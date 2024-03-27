@@ -2,8 +2,8 @@
 
 import { useTheme } from "next-themes";
 import useIsSSR from "@/hooks/use-is-ssr";
-import Icon, { icons } from "@/components/core/Icon";
-import ToggleGroup from "@/components/core/ToggleGroup";
+import Icon, { icons } from "@/components/core/icon";
+import ToggleGroup from "@/components/core/toggle-group";
 
 type ThemeIcon = Pick<typeof icons, "light" | "dark" | "system">;
 
@@ -14,7 +14,7 @@ export default function ThemeToggler() {
   if (isSSR) return null;
 
   return (
-    <div className="static">
+    <div className="fixed bottom-4 right-4">
       <ToggleGroup.ToggleGroupRoot
         type="single"
         onValueChange={(value) => setTheme(value)}

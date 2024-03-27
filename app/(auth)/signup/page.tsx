@@ -1,13 +1,13 @@
-import { Fragment } from "react";
+import * as React from "react";
 import Link from "next/link";
-import Separator from "@/components/core/Separator";
-import Typography from "@/components/core/Typography";
-import SignupForm from "@/components/SignupForm";
-import SignupWithOAuth from "@/components/SignupWithOAuth";
+import Separator from "@/components/core/separator";
+import Typography from "@/components/core/typography";
+import SignupForm from "@/components/signup-form";
+import SignupWithOAuth from "@/components/signup-with-oauth";
 
 export default function Page() {
   return (
-    <Fragment>
+    <React.Fragment>
       <div className="mb-8 space-y-1 text-center">
         <Typography.Title variant="5/bold">Create an account</Typography.Title>
         <Typography.Text variant="sm/normal">
@@ -28,6 +28,6 @@ export default function Page() {
           and to receive periodic emails with updates.
         </Typography.Text>
       </div>
-    </Fragment>
+    </React.Fragment>
   );
 }
