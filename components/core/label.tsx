@@ -28,5 +28,11 @@ Label.displayName = LabelPrimitive.Root.displayName;
 export default Label;
 
 const LabelStyles = cva([
-  "inline-block text-sm font-semibold leading-none text-misty-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+  "inline-block",
+  "text-sm",
+  "font-semibold",
+  "leading-none",
+  "text-misty-700",
+  "peer-disabled:cursor-not-allowed",
+  "peer-disabled:opacity-70",
 ]);

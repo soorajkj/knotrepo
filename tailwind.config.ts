@@ -1,5 +1,7 @@
+import { preset } from "./styles/untitled.preset";
+import forms from "@tailwindcss/forms";
 import type { Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
+import animate from "tailwindcss-animate";
 
 const config: Config = {
   content: [
@@ -7,18 +9,9 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
-    extend: {},
-    fontFamily: {
-      "family-sora": ["var(--font-family-sora)", ...fontFamily.serif],
-      "family-calsans": ["var(--font-family-calsans)", ...fontFamily.sans],
-    },
-  },
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
-  darkMode: "class",
-  plugins: [require("tailwindcss-animate")],
+  darkMode: ["class"],
+  presets: [preset],
+  plugins: [animate, forms({ strategy: "class" })],
 };
 
 export default config;

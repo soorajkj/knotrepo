@@ -37,7 +37,18 @@ const ToggleGroupItem = React.forwardRef<
 });
 
 const ToggleGroupStyles = cva([
-  "dark:data-[state=on]:bg-zinc-800 dark:data-[state=on]:text-zinc-50 inline-flex h-9 w-9 items-center justify-center rounded-md data-[state=on]:bg-zinc-300 data-[state=on]:text-zinc-900 dark:hover:text-zinc-50 hover:text-zinc-900",
+  "dark:data-[state=on]:bg-zinc-800",
+  "dark:data-[state=on]:text-zinc-50",
+  "inline-flex",
+  "h-9",
+  "w-9",
+  "items-center",
+  "justify-center",
+  "rounded-md",
+  "data-[state=on]:bg-zinc-300",
+  "data-[state=on]:text-zinc-900",
+  "dark:hover:text-zinc-50",
+  "hover:text-zinc-900",
 ]);
 
 ToggleGroupItem.displayName = ToggleGroupPrimitive.Item.displayName;
