@@ -12,12 +12,18 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{ "name": "next" }],
     "paths": {
+      "@/components/core/*": ["./components/core/*"],
+      "@/components/root/*": ["./components/__root/*"],
+      "@/components/public/*": ["./components/__public/*"],
+      "@/components/auth/*": ["./components/__auth/*"],
+      "@/components/dashboard/*": ["./components/__dashboard/*"],
+      "@/components/*": ["./components/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/public/*": ["./public/*"],
+      "@/styles/*": ["./styles/*"],
       "@/*": ["./*"]
     }
   },

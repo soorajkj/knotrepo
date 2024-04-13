@@ -2,8 +2,8 @@ import * as React from "react";
 import Link from "next/link";
 import Separator from "@/components/core/separator";
 import Typography from "@/components/core/typography";
-import SigninForm from "@/components/signin-form";
-import SigninWithOAuth from "@/components/signin-with-oauth";
+import SigninForm from "@/components/auth/signin-form";
+import SigninWithOAuth from "@/components/auth/signin-with-oauth";
 
 export default function page() {
   return (

@@ -1,13 +1,12 @@
 "use client";
 
-import * as React from "react";
 import Button from "@/components/core/button";
 import Icon from "@/components/core/icon";
 
 export default function SigninWithOAuth() {
   return (
     <div className="flex flex-col gap-4">
-      <Button variant="secondary" block>
+      <Button variant="secondary" block onClick={() => {}}>
         <Icon icon="google" width={20} height={20} />
         <span>Continue with Google</span>
       </Button>
