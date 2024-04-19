@@ -66,7 +66,7 @@ const Link = () => {
   return <p></p>;
 };
 
-const TitleStyles = cva(["font-family-sora"], {
+const TitleStyles = cva(["font-family-manrope"], {
   variants: {
     level: {
       1: "text-7xl",
@@ -85,7 +85,7 @@ const TitleStyles = cva(["font-family-sora"], {
   },
 });
 
-const TextStyles = cva(["font-family-sora"], {
+const TextStyles = cva(["font-family-manrope"], {
   variants: {
     size: {
       xl: "text-xl",

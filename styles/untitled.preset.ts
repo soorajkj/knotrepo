@@ -4,7 +4,7 @@ export const preset = {
   content: [],
   theme: {
     fontFamily: {
-      "family-sora": ["var(--font-family-sora)"],
+      "family-manrope": ["var(--font-family-manrope)"],
       "family-calsans": ["var(--font-family-calsans)"],
     },
     extend: {},
