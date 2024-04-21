@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
+import { cn } from "@/src/lib/utils";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import { cva, VariantProps } from "class-variance-authority";
 import { DefaultTheme } from "tailwindcss/types/generated/default-theme";
-import { cn } from "@/lib/utils";
 
 interface AvatarRootProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>,

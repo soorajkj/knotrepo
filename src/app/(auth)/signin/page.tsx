@@ -1,27 +1,27 @@
 import * as React from "react";
 import Link from "next/link";
-import Separator from "@/components/core/separator";
-import Typography from "@/components/core/typography";
-import SignupForm from "@/components/auth/signup-form";
-import SignupWithOAuth from "@/components/auth/signup-with-oauth";
+import SigninForm from "@/src/components/__auth/signin-form";
+import SigninWithOAuth from "@/src/components/__auth/signin-with-oauth";
+import Separator from "@/src/components/core/separator";
+import Typography from "@/src/components/core/typography";
 
-export default function Page() {
+export default function page() {
   return (
     <React.Fragment>
       <div className="mb-8 space-y-1 text-center">
-        <Typography.Title variant="5/bold">Create an account</Typography.Title>
+        <Typography.Title variant="5/bold">Welcome back!</Typography.Title>
         <Typography.Text variant="sm/normal">
-          Sign up for free! Please enter your details.
+          Welcome back! Please enter your details.
         </Typography.Text>
       </div>
-      <SignupForm />
+      <SigninForm />
       <div className="my-8">
         <Separator />
       </div>
-      <SignupWithOAuth />
+      <SigninWithOAuth />
       <div className="mt-8 flex flex-col space-y-4 sm:mx-auto sm:max-w-sm sm:text-center">
         <Typography.Text variant="sm/normal">
-          Already have an account? <Link href="/signin">Login</Link>
+          Dont&apos;t have an account? <Link href="/signup">Signup</Link>
         </Typography.Text>
         <Typography.Text variant="xs/normal">
           By continuing, you agree to our Terms of Service and Privacy Policy,

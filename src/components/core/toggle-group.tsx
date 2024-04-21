@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
+import { cn } from "@/src/lib/utils";
 import * as ToggleGroupPrimitive from "@radix-ui/react-toggle-group";
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
 
 const ToggleGroupRoot = React.forwardRef<
   React.ElementRef<typeof ToggleGroupPrimitive.Root>,

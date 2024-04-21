@@ -1,9 +1,9 @@
 "use client";
 
+import Icon from "@/src/components/core/icon";
+import ToggleGroup from "@/src/components/core/toggle-group";
+import useIsSSR from "@/src/hooks/use-is-ssr";
 import { useTheme } from "next-themes";
-import useIsSSR from "@/hooks/use-is-ssr";
-import Icon from "@/components/core/icon";
-import ToggleGroup from "@/components/core/toggle-group";
 
 export default function ThemeToggler() {
   const { theme, setTheme } = useTheme();

@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Button from "@/src/components/core/button";
+import Form from "@/src/components/core/form";
+import Input from "@/src/components/core/input";
+import Typography from "@/src/components/core/typography";
+import { signinSchema } from "@/src/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { signinSchema } from "@/lib/validations";
-import Button from "@/components/core/button";
-import Form from "@/components/core/form";
-import Input from "@/components/core/input";
-import Typography from "@/components/core/typography";
 
 type SigninFormFields = z.infer<typeof signinSchema>;
 

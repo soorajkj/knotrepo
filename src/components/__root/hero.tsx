@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Button from "@/components/core/button";
-import Container from "@/components/core/container";
+import Button from "@/src/components/core/button";
+import Container from "@/src/components/core/container";
 
 export default function Hero() {
   return (

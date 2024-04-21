@@ -1,12 +1,12 @@
 "use client";
 
+import Button from "@/src/components/core/button";
+import Form from "@/src/components/core/form";
+import Input from "@/src/components/core/input";
+import { signupSchema } from "@/src/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { signupSchema } from "@/lib/validations";
-import Button from "@/components/core/button";
-import Form from "@/components/core/form";
-import Input from "@/components/core/input";
 
 type SignupFormFields = z.infer<typeof signupSchema>;
 

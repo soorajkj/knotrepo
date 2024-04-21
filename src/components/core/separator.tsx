@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
+import { cn } from "@/src/lib/utils";
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
 
 const Separator = React.forwardRef<
   React.ElementRef<typeof SeparatorPrimitive.Root>,
