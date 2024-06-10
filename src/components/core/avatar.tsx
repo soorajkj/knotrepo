@@ -4,13 +4,10 @@ import * as React from "react";
 import { cn } from "@/src/lib/utils";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import { cva, VariantProps } from "class-variance-authority";
-import { DefaultTheme } from "tailwindcss/types/generated/default-theme";
 
 interface AvatarRootProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>,
-    VariantProps<typeof AvatarRootStyles> {
-  size?: keyof DefaultTheme["spacing"];
-}
+    VariantProps<typeof AvatarRootStyles> {}
 
 const AvatarRoot = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
@@ -53,7 +50,7 @@ const AvatarImage = React.forwardRef<
   return (
     <AvatarPrimitive.Image
       ref={ref}
-      src={src || "images/avatar.jpg"}
+      src={src}
       className={cn(AvatarImageStyles({ className }))}
       {...rest}
     />

@@ -1,4 +1,3 @@
-import { preset } from "./src/styles/untitled.preset";
 import forms from "@tailwindcss/forms";
 import type { Config } from "tailwindcss";
 import animate from "tailwindcss-animate";
@@ -10,7 +9,12 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   darkMode: ["class"],
-  presets: [preset],
+  theme: {
+    fontFamily: {
+      "family-manrope": ["var(--font-family-manrope)"],
+      "family-calsans": ["var(--font-family-calsans)"],
+    },
+  },
   plugins: [animate, forms({ strategy: "class" })],
 };
 
