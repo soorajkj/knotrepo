@@ -20,6 +20,8 @@
       "@/components/auth/*": ["./src/components/__auth/*"],
       "@/components/dashboard/*": ["./src/components/__dashboard/*"],
       "@/components/*": ["./src/components/*"],
+      "@/actions/*": ["./src/actions/*"],
+      "@/schemas/*": ["./src/schemas/*"],
       "@/lib/*": ["./src/lib/*"],
       "@/hooks/*": ["./src/hooks/*"],
       "@/public/*": ["./public/*"],

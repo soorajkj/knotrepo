@@ -4,6 +4,7 @@
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
     "EditorConfig.EditorConfig",
-    "dsznajder.es7-react-js-snippets"
+    "dsznajder.es7-react-js-snippets",
+    "Prisma.prisma"
   ]
 }
