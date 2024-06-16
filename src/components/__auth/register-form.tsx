@@ -1,9 +1,10 @@
 "use client";
 
-import { useTransition } from "react";
+import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { register } from "@/actions/auth";
 import { RegisterSchema } from "@/schemas/register";
 import Button from "@/components/core/button";
 import Form from "@/components/core/form";
@@ -12,7 +13,7 @@ import Input from "@/components/core/input";
 type SignupFormFields = z.infer<typeof RegisterSchema>;
 
 export default function SignupForm() {
-  const [isPending, startTransition] = useTransition();
+  const [isPending, startTransition] = React.useTransition();
   const form = useForm<SignupFormFields>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
@@ -22,8 +23,10 @@ export default function SignupForm() {
     },
   });
 
-  const processForm = (_formData: SignupFormFields) => {
-    startTransition(async () => {});
+  const processForm = (formData: SignupFormFields) => {
+    startTransition(async () => {
+      await register(formData);
+    });
   };
 
   return (
