@@ -1,9 +1,9 @@
 import * as React from "react";
 import Link from "next/link";
-import SignupForm from "@/src/components/__auth/signup-form";
-import SignupWithOAuth from "@/src/components/__auth/signup-with-oauth";
-import Separator from "@/src/components/core/separator";
-import Typography from "@/src/components/core/typography";
+import Separator from "@/components/core/separator";
+import Typography from "@/components/core/typography";
+import ContinueOAuth from "@/components/auth/continue-oauth";
+import RegisterForm from "@/components/auth/register-form";
 
 export default function Page() {
   return (
@@ -14,14 +14,14 @@ export default function Page() {
           Sign up for free! Please enter your details.
         </Typography.Text>
       </div>
-      <SignupForm />
+      <RegisterForm />
       <div className="my-8">
         <Separator />
       </div>
-      <SignupWithOAuth />
+      <ContinueOAuth />
       <div className="mt-8 flex flex-col space-y-4 sm:mx-auto sm:max-w-sm sm:text-center">
         <Typography.Text variant="sm/normal">
-          Already have an account? <Link href="/signin">Login</Link>
+          Already have an account? <Link href="/login">Login</Link>
         </Typography.Text>
         <Typography.Text variant="xs/normal">
           By continuing, you agree to our Terms of Service and Privacy Policy,

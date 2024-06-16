@@ -1,8 +1,8 @@
 import * as React from "react";
 import type { Metadata } from "next";
-import ThemeProvider from "@/src/components/theme-provider";
-import { manrope } from "@/src/lib/fonts";
+import { manrope } from "@/lib/fonts";
 import Toaster from "@/components/core/toaster";
+import ThemeProvider from "@/components/theme-provider";
 import "@/styles/app.scss";
 
 export const metadata: Metadata = {};

@@ -1,22 +1,30 @@
 "use client";
 
-import Button from "@/src/components/core/button";
-import Form from "@/src/components/core/form";
-import Input from "@/src/components/core/input";
-import { signupSchema } from "@/src/lib/validations";
+import { useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { RegisterSchema } from "@/schemas/register";
+import Button from "@/components/core/button";
+import Form from "@/components/core/form";
+import Input from "@/components/core/input";
 
-type SignupFormFields = z.infer<typeof signupSchema>;
+type SignupFormFields = z.infer<typeof RegisterSchema>;
 
 export default function SignupForm() {
+  const [isPending, startTransition] = useTransition();
   const form = useForm<SignupFormFields>({
-    resolver: zodResolver(signupSchema),
-    defaultValues: { email: "", username: "", password: "" },
+    resolver: zodResolver(RegisterSchema),
+    defaultValues: {
+      email: "",
+      username: "",
+      password: "",
+    },
   });
 
-  const processForm = async (_formData: SignupFormFields) => {};
+  const processForm = (_formData: SignupFormFields) => {
+    startTransition(async () => {});
+  };
 
   return (
     <Form.FormRoot {...form}>
@@ -33,6 +41,7 @@ export default function SignupForm() {
                   type="email"
                   placeholder="example@gmail.com"
                   autoComplete="off"
+                  disabled={isPending}
                   {...field}
                 />
               </Form.FormControl>
@@ -51,6 +60,7 @@ export default function SignupForm() {
                   type="text"
                   placeholder="yourname"
                   autoComplete="off"
+                  disabled={isPending}
                   {...field}
                 />
               </Form.FormControl>
@@ -69,13 +79,14 @@ export default function SignupForm() {
                   type="password"
                   placeholder="●●●●●●●●"
                   autoComplete="off"
+                  disabled={isPending}
                   {...field}
                 />
               </Form.FormControl>
             </Form.FormItem>
           )}
         />
-        <Button type="submit" block className="!mt-12">
+        <Button type="submit" block disabled={isPending} className="!mt-12">
           Get started
         </Button>
       </form>
