@@ -3,6 +3,7 @@
 import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 import { register } from "@/actions/auth";
 import { RegisterSchema } from "@/schemas/register";
@@ -25,7 +26,12 @@ export default function SignupForm() {
 
   const processForm = (formData: SignupFormFields) => {
     startTransition(async () => {
-      await register(formData);
+      const { success, message } = await register(formData);
+      if (!success) {
+        toast.error(message);
+      } else {
+        toast.success(message);
+      }
     });
   };
 

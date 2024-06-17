@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 import { login } from "@/actions/auth";
 import { LoginSchema } from "@/schemas/login";
@@ -18,12 +19,17 @@ export default function LoginForm() {
   const [isPending, startTransition] = React.useTransition();
   const form = useForm<LoginFormFields>({
     resolver: zodResolver(LoginSchema),
-    defaultValues: { username: "vismaya", password: "Password123@" },
+    defaultValues: { username: "", password: "" },
   });
 
   const processForm = (formData: LoginFormFields) => {
     startTransition(async () => {
-      await login(formData);
+      const { success, message } = await login(formData);
+      if (!success) {
+        toast.error(message);
+      } else {
+        toast.success(message);
+      }
     });
   };
 

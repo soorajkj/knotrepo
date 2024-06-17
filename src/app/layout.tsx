@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { Metadata } from "next";
 import { manrope } from "@/lib/fonts";
+import Toaster from "@/components/core/toaster";
 import ThemeProvider from "@/components/theme-provider";
 import "@/styles/app.scss";
 
@@ -14,6 +15,7 @@ export default function Layout(props: LayoutProps) {
       <body className="h-full min-h-screen w-full bg-white font-family-manrope text-sm font-normal leading-normal text-zinc-700 antialiased dark:bg-zinc-950 dark:text-zinc-400">
         <ThemeProvider enableSystem defaultTheme="system" attribute="class">
           {props.children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

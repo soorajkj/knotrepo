@@ -20,6 +20,7 @@
       "@/components/auth/*": ["./src/components/__auth/*"],
       "@/components/dashboard/*": ["./src/components/__dashboard/*"],
       "@/components/*": ["./src/components/*"],
+      "@/types/*": ["./src/types/*"],
       "@/actions/*": ["./src/actions/*"],
       "@/schemas/*": ["./src/schemas/*"],
       "@/lib/*": ["./src/lib/*"],
