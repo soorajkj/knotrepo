@@ -12,7 +12,7 @@ const config: Config = {
   theme: {
     fontFamily: {
       "family-manrope": ["var(--font-family-manrope)"],
-      "family-calsans": ["var(--font-family-calsans)"],
+      "family-calistoga": ["var(--font-family-calistoga)"],
     },
   },
   plugins: [animate, forms({ strategy: "class" })],

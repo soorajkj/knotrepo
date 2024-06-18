@@ -18,7 +18,7 @@ export default function Toaster(prosp: ToasterProps) {
       toastOptions={{
         className: "group toast border-transparent",
         classNames: {
-          default: "group-[.toaster]:bg-neutral-800",
+          default: "group-[.toaster]:bg-zinc-800",
           info: "group-[.toaster]:bg-blue-800",
           success: "group-[.toaster]:bg-green-800",
           error: "group-[.toaster]:bg-red-800",

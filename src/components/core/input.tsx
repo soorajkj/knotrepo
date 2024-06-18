@@ -44,14 +44,6 @@ const InputStyles = cva([
   "disabled:cursor-not-allowed",
   "peer-[.error]:border-red-300",
   "peer-[.error]:ring-red-600/20",
-  "dark:border-zinc-700",
-  "dark:bg-zinc-800/20",
-  "dark:text-zinc-100",
-  "dark:placeholder-zinc-600",
-  "dark:focus-visible:border-blue-500",
-  "dark:focus-visible:ring-blue-500/20",
-  "dark:peer-[.error]:border-red-900",
-  "dark:peer-[.error]:ring-red-600/20",
 ]);
 
 Input.displayName = "Input";
