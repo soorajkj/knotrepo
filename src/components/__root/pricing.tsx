@@ -8,7 +8,7 @@ export default function Pricing() {
       <Container>
         <div>
           <div className="mx-auto mb-12 max-w-xl text-center">
-            <h2 className="mb-4 font-family-calistoga text-4xl text-zinc-800">
+            <h2 className="mb-4 font-family-suezone text-4xl text-zinc-800">
               Pricing
             </h2>
             <p className="text-lg font-medium">

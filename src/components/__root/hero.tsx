@@ -17,7 +17,7 @@ export default function Hero() {
               <p>We&apos;ve just released the latest version</p>
             </Link>
           </div>
-          <h1 className="mb-8 block max-w-max font-family-calistoga text-4xl font-normal text-zinc-800 sm:text-5xl lg:text-5xl">
+          <h1 className="mb-8 block max-w-max font-family-suezone text-4xl font-normal text-zinc-800 sm:text-5xl lg:text-5xl">
             Link All Your Profiles and Content in One Convenient Place
           </h1>
           <p className="mb-8 max-w-md text-lg font-medium md:max-w-2xl">

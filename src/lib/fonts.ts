@@ -10,8 +10,8 @@ export const manrope = Manrope({
   adjustFontFallback: true,
 });
 
-export const calistoga = Suez_One({
-  variable: "--font-family-calistoga",
+export const suezone = Suez_One({
+  variable: "--font-family-suezone",
   subsets: ["latin"],
   weight: ["400"],
   display: "swap",
