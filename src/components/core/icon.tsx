@@ -5,11 +5,13 @@ import * as VisuallyHiddenPrimitive from "@radix-ui/react-visually-hidden";
 import Dark from "@/public/icons/dark.svg";
 import Google from "@/public/icons/google.svg";
 import Light from "@/public/icons/light.svg";
+import Menu from "@/public/icons/menu.svg";
 
 export const icons = {
   dark: Dark,
   google: Google,
   light: Light,
+  menu: Menu,
 };
 
 interface IconProps extends SVGAttributes<SVGSVGElement> {

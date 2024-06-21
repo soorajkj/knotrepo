@@ -1,6 +1,7 @@
 import React from "react";
 import { auth, signOut } from "@/lib/auth";
 import Button from "@/components/core/button";
+import Preview from "@/components/root/preview";
 
 export default async function Page() {
   const session = await auth();
@@ -16,6 +17,7 @@ export default async function Page() {
       >
         <Button type="submit">Logout</Button>
       </form>
+      <Preview />
     </div>
   );
 }

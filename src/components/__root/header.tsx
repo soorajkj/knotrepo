@@ -4,6 +4,7 @@ import Link from "next/link";
 import { auth } from "@/lib/auth";
 import Button from "@/components/core/button";
 import Container from "@/components/core/container";
+import HeaderAction from "@/components/root/header-action";
 
 const routes = [
   { url: "/", label: "Features", status: false },
@@ -19,7 +20,7 @@ export default async function Header() {
   return (
     <header className="sticky inset-x-0 top-0 z-30 bg-zinc-100 backdrop-blur-md">
       <Container className="relative after:absolute after:inset-x-0 after:bottom-0 after:-z-10 after:h-px after:bg-gradient-to-r after:from-transparent after:via-zinc-500/20">
-        <div className="flex flex-grow items-center py-4">
+        <div className="flex h-20 flex-grow items-center">
           <div className="flex flex-1 flex-shrink-0 flex-nowrap items-center justify-start">
             <Link
               href="/"
@@ -70,28 +71,7 @@ export default async function Header() {
               </React.Fragment>
             )}
           </div>
-          <div className="flex flex-1 items-center justify-end md:hidden">
-            <div className="flex rounded-full border border-zinc-500/20 bg-white/10 backdrop-blur-md">
-              <button className="flex items-center justify-center rounded-full px-3 py-1 text-sm text-zinc-200 transition hover:text-zinc-50">
-                Menu
-                <svg
-                  viewBox="0 0 24 24"
-                  width="1.2em"
-                  height="1.2em"
-                  className="ml-2"
-                >
-                  <path
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 12h16M4 6h16M4 18h16"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
+          <HeaderAction session={session} />
         </div>
       </Container>
     </header>

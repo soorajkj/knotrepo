@@ -3,12 +3,12 @@ import Button from "@/components/core/button";
 
 export default function Plan() {
   return (
-    <div className="rounded-lg bg-zinc-100 px-8 py-8">
+    <div className="w-full rounded-lg bg-zinc-100 px-8 py-8">
       <h5 className="mb-2 text-lg font-semibold text-zinc-800">
         Hobbyist Plan
       </h5>
       <p className="mb-4">Affordable and Essential</p>
-      <p className="mb-6 text-4xl font-semibold">
+      <p className="mb-6 text-4xl font-bold">
         $29/ <span className="text-2xl">month</span>
       </p>
       <Button block>Start Free Trial</Button>

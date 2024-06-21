@@ -36,7 +36,6 @@ const SeparatorStyles = cva(
     "flex",
     "shrink-0",
     "items-center",
-    "dark:bg-zinc-700",
   ],
   {
     variants: {
