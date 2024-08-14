@@ -20,13 +20,14 @@
       "@/components/auth/*": ["./src/components/__auth/*"],
       "@/components/dashboard/*": ["./src/components/__dashboard/*"],
       "@/components/*": ["./src/components/*"],
-      "@/actions/*": ["./src/actions/*"],
+      "@/types/*": ["./src/types/*"],
       "@/schemas/*": ["./src/schemas/*"],
+      "@/utils/*": ["./src/utils/*"],
       "@/lib/*": ["./src/lib/*"],
       "@/hooks/*": ["./src/hooks/*"],
       "@/public/*": ["./public/*"],
       "@/styles/*": ["./src/styles/*"],
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

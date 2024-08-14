@@ -1,59 +1,165 @@
 import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof InputStyles> {}
+    VariantProps<typeof InputStyles> {
+  invalid?: boolean;
+  _prefix?: React.ReactNode;
+  _suffix?: React.ReactNode;
+  _prefixStyle?: boolean;
+  _suffixStyle?: boolean;
+}
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { className, type, ...rest } = props;
+const InputField = React.forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => {
+    const {
+      className,
+      type,
+      invalid = false,
+      _prefix,
+      _suffix,
+      _prefixStyle = true,
+      _suffixStyle = true,
+      ...rest
+    } = props;
 
-  return (
-    <input
-      ref={ref}
-      type={type}
-      className={cn(InputStyles({ className }))}
-      {...rest}
-    ></input>
-  );
-});
+    return (
+      <div
+        aria-invalid={invalid || undefined}
+        className={cn(InputRootStyles({ invalid }))}
+      >
+        {_prefix && (
+          <InputAddon type="_prefix" styled={!!_prefixStyle}>
+            {_prefix}
+          </InputAddon>
+        )}
+        {_suffix && (
+          <InputAddon type="_suffix" styled={!!_suffixStyle}>
+            {_suffix}
+          </InputAddon>
+        )}
+        <input
+          ref={ref}
+          type={type}
+          className={cn(InputStyles({ className }))}
+          {...rest}
+        ></input>
+      </div>
+    );
+  }
+);
+
+interface InputAddonProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof InputAddonStyles> {
+  asChild?: boolean;
+}
+
+const InputAddon = React.forwardRef<HTMLDivElement, InputAddonProps>(
+  (props, ref) => {
+    const { asChild, type, styled, className, ...rest } = props;
+    const Comp = asChild ? Slot : "div";
+
+    return (
+      <Comp
+        ref={ref}
+        className={cn(InputAddonStyles({ type, styled, className }))}
+        {...rest}
+      ></Comp>
+    );
+  }
+);
+
+const InputRootStyles = cva(
+  [
+    "flex",
+    "relative",
+    "border",
+    "focus-within:ring-4",
+    "outline-none",
+    "rounded-lg",
+    "overflow-hidden",
+  ],
+  {
+    variants: {
+      invalid: {
+        true: [
+          "border-red-300",
+          "focus-within:border-red-300",
+          "focus-within:ring-red-600/20",
+        ],
+        false: [
+          "border-zinc-300",
+          "focus-within:border-blue-300",
+          "focus-within:ring-blue-100",
+        ],
+      },
+    },
+  }
+);
 
 const InputStyles = cva([
   "inline-flex",
+  "order-2",
   "h-10",
+  "flex-1",
   "w-full",
   "select-none",
   "appearance-none",
   "items-center",
-  "gap-2",
-  "rounded-lg",
-  "border",
-  "border-zinc-300",
   "bg-transparent",
   "px-3",
   "py-2",
   "text-base",
   "text-zinc-900",
   "placeholder-zinc-400",
-  "shadow-sm",
   "outline-none",
-  "focus-visible:border-blue-300",
-  "focus-visible:ring-4",
-  "focus-visible:ring-blue-100",
   "disabled:cursor-not-allowed",
-  "peer-[.error]:border-red-300",
-  "peer-[.error]:ring-red-600/20",
-  "dark:border-zinc-700",
-  "dark:bg-zinc-800/20",
-  "dark:text-zinc-100",
-  "dark:placeholder-zinc-600",
-  "dark:focus-visible:border-blue-500",
-  "dark:focus-visible:ring-blue-500/20",
-  "dark:peer-[.error]:border-red-900",
-  "dark:peer-[.error]:ring-red-600/20",
 ]);
 
-Input.displayName = "Input";
+const InputAddonStyles = cva(
+  [
+    "inline-flex",
+    "h-10",
+    "px-2",
+    "shrink-0",
+    "items-center",
+    "justify-center",
+    "text-sm",
+    "text-zinc-500",
+  ],
+  {
+    variants: {
+      type: {
+        _prefix: ["order-1"],
+        _suffix: ["order-3"],
+      },
+      styled: {
+        false: ["border-transparent"],
+        true: ["border-zinc-200"],
+      },
+    },
+    compoundVariants: [
+      {
+        type: "_prefix",
+        styled: true,
+        className: "border-r bg-zinc-100/40",
+      },
+      {
+        type: "_suffix",
+        styled: true,
+        className: "border-l bg-zinc-100/40",
+      },
+    ],
+  }
+);
+
+InputAddon.displayName = "InputAddon";
+InputField.displayName = "InputField";
+
+const Input = { InputField, InputAddon };
 
 export default Input;

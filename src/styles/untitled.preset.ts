@@ -5,7 +5,7 @@ export const preset = {
   theme: {
     fontFamily: {
       "family-manrope": ["var(--font-family-manrope)"],
-      "family-calsans": ["var(--font-family-calsans)"],
+      "family-suezone": ["var(--font-family-suezone)"],
     },
     extend: {},
   },

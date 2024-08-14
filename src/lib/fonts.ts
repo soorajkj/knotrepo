@@ -1,4 +1,4 @@
-import { Manrope } from "next/font/google";
+import { Manrope, Suez_One } from "next/font/google";
 
 export const manrope = Manrope({
   variable: "--font-family-manrope",
@@ -7,5 +7,15 @@ export const manrope = Manrope({
   display: "swap",
   preload: true,
   style: ["normal"],
-  adjustFontFallback: true,
+  adjustFontFallback: false,
+});
+
+export const suezone = Suez_One({
+  variable: "--font-family-suezone",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  preload: true,
+  style: ["normal"],
+  adjustFontFallback: false,
 });

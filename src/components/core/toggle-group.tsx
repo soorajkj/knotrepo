@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as ToggleGroupPrimitive from "@radix-ui/react-toggle-group";
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 const ToggleGroupRoot = React.forwardRef<
   React.ElementRef<typeof ToggleGroupPrimitive.Root>,

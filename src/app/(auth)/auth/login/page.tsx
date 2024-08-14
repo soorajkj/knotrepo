@@ -21,7 +21,7 @@ export default function page() {
       <ContinueOAuth />
       <div className="mt-8 flex flex-col space-y-4 sm:mx-auto sm:max-w-sm sm:text-center">
         <Typography.Text variant="sm/normal">
-          Dont&apos;t have an account? <Link href="/register">Signup</Link>
+          Dont&apos;t have an account? <Link href="/auth/register">Signup</Link>
         </Typography.Text>
         <Typography.Text variant="xs/normal">
           By continuing, you agree to our Terms of Service and Privacy Policy,

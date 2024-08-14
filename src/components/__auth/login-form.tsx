@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -10,15 +11,15 @@ import Form from "@/components/core/form";
 import Input from "@/components/core/input";
 import Typography from "@/components/core/typography";
 
-type SigninFormFields = z.infer<typeof LoginSchema>;
+type LoginFormFields = z.infer<typeof LoginSchema>;
 
 export default function LoginForm() {
-  const form = useForm<SigninFormFields>({
+  const form = useForm<LoginFormFields>({
     resolver: zodResolver(LoginSchema),
     defaultValues: { username: "", password: "" },
   });
 
-  const processForm = async (_formData: SigninFormFields) => {};
+  const processForm = (_formData: LoginFormFields) => {};
 
   return (
     <Form.FormRoot {...form}>
@@ -31,10 +32,11 @@ export default function LoginForm() {
               <Form.FormLabel>Username</Form.FormLabel>
               <Form.FormMessage className="order-3" />
               <Form.FormControl>
-                <Input
+                <Input.InputField
                   type="text"
                   placeholder="sooraj"
                   autoComplete="off"
+                  disabled
                   {...field}
                 />
               </Form.FormControl>
@@ -49,22 +51,23 @@ export default function LoginForm() {
               <div className="flex items-center justify-between">
                 <Form.FormLabel>Password</Form.FormLabel>
                 <Typography.Text variant="sm/normal">
-                  <Link href="/">Forgot password</Link>
+                  <Link href="/auth/forgot-password">Forgot password</Link>
                 </Typography.Text>
               </div>
               <Form.FormMessage className="order-3" />
               <Form.FormControl>
-                <Input
+                <Input.InputField
                   type="password"
                   placeholder="●●●●●●●●"
                   autoComplete="off"
+                  disabled
                   {...field}
                 />
               </Form.FormControl>
             </Form.FormItem>
           )}
         />
-        <Button type="submit" block className="!mt-12">
+        <Button type="submit" block disabled className="!mt-12">
           <span>Sign in</span>
         </Button>
       </form>

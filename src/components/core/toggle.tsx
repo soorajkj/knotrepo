@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as TogglePrimitive from "@radix-ui/react-toggle";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 const Toggle = React.forwardRef<
   React.ElementRef<typeof TogglePrimitive.Root>,
