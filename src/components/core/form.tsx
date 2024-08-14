@@ -2,7 +2,7 @@ import * as React from "react";
 import type * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
 import * as ReactHookForm from "react-hook-form";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import Label from "@/components/core/label";
 
 const FormRoot = ReactHookForm.FormProvider;
@@ -87,10 +87,15 @@ const FormLabel = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
 >((props, ref) => {
   const { className, ...rest } = props;
-  const { formItemId } = useFormField();
+  const { formItemId, error } = useFormField();
 
   return (
-    <Label ref={ref} className={cn(className)} htmlFor={formItemId} {...rest} />
+    <Label
+      ref={ref}
+      className={cn(error && "text-red-500", className)}
+      htmlFor={formItemId}
+      {...rest}
+    />
   );
 });
 
@@ -104,6 +109,8 @@ const FormControl = React.forwardRef<
   const { error, formItemId, formDescriptionId, formMessageId } =
     useFormField();
 
+  const _props = { ...rest, invalid: !!error };
+
   return (
     <Slot
       ref={ref}
@@ -115,7 +122,7 @@ const FormControl = React.forwardRef<
       }
       aria-invalid={!!error}
       className={cn("relative", className)}
-      {...rest}
+      {..._props}
     />
   );
 });

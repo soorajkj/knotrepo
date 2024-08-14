@@ -1,10 +1,11 @@
 import React from "react";
-import { auth, signOut } from "@/lib/auth";
+import { auth, signOut } from "@/auth";
 import Button from "@/components/core/button";
 import Preview from "@/components/root/preview";
 
 export default async function Page() {
   const session = await auth();
+
   return (
     <div>
       <h2>Dashboard Page</h2>
@@ -12,7 +13,7 @@ export default async function Page() {
       <form
         action={async () => {
           "use server";
-          await signOut();
+          await signOut({ redirect: true });
         }}
       >
         <Button type="submit">Logout</Button>

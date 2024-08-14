@@ -1,7 +1,7 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { auth } from "@/lib/auth";
+import { auth } from "@/auth";
 import Button from "@/components/core/button";
 import Container from "@/components/core/container";
 import HeaderAction from "@/components/root/header-action";
@@ -63,10 +63,10 @@ export default async function Header() {
             ) : (
               <React.Fragment>
                 <Button variant="outline" asChild>
-                  <Link href="/login">Login</Link>
+                  <Link href="/auth/login">Login</Link>
                 </Button>
                 <Button variant="primary" asChild>
-                  <Link href="/register">Get Started</Link>
+                  <Link href="/auth/register">Get Started</Link>
                 </Button>
               </React.Fragment>
             )}

@@ -7,7 +7,7 @@ export const manrope = Manrope({
   display: "swap",
   preload: true,
   style: ["normal"],
-  adjustFontFallback: true,
+  adjustFontFallback: false,
 });
 
 export const suezone = Suez_One({
@@ -17,5 +17,5 @@ export const suezone = Suez_One({
   display: "swap",
   preload: true,
   style: ["normal"],
-  adjustFontFallback: true,
+  adjustFontFallback: false,
 });

@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { cva, VariantProps } from "class-variance-authority";
 import { Session } from "next-auth";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import Button from "@/components/core/button";
 import Container from "@/components/core/container";
 

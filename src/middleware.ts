@@ -1,28 +1,28 @@
 import { NextResponse } from "next/server";
+import authConfig from "@/auth.config";
 import NextAuth from "next-auth";
-import authConfig from "@/lib/auth.config";
 
 const { auth } = NextAuth(authConfig);
 
-const _auth = ["/login", "/register"];
+const _apis = "/api/auth";
 const _public = ["/"];
+const _auth = ["/auth/login", "/auth/register"];
 
-// @ts-expect-error
-export default auth(async function middleware(req: any) {
+export default auth(async function middlware(req) {
+  const _authenticated = !!req.auth;
   const { nextUrl } = req;
-  const authenticated = !!req.auth;
 
-  if (nextUrl.pathname.startsWith("/api/auth")) return null;
+  if (nextUrl.pathname.startsWith(_apis)) return;
 
   if (_auth.includes(nextUrl.pathname)) {
-    if (authenticated) {
+    if (_authenticated) {
       return Response.redirect(new URL("/dashboard", nextUrl));
     }
-    return null;
+    return;
   }
 
-  if (!authenticated && !_public.includes(nextUrl.pathname)) {
-    return NextResponse.redirect(new URL("/login", nextUrl));
+  if (!_authenticated && !_public.includes(nextUrl.pathname)) {
+    return Response.redirect(new URL("/auth/login", nextUrl));
   }
 
   return NextResponse.next();

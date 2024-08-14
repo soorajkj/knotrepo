@@ -1,7 +1,8 @@
-/* eslint-disable no-var */
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-var */
 
 import { PrismaClient } from "@prisma/client";
+import _ from "lodash";
 
 declare global {
   var prisma: PrismaClient | undefined;
@@ -9,4 +10,6 @@ declare global {
 
 export const prisma = globalThis.prisma || new PrismaClient();
 
-if (process.env.NODE_ENV !== "production") globalThis.prisma = prisma;
+if (!_.isEqual(process.env.NODE_ENV, "production")) {
+  globalThis.prisma = prisma;
+}

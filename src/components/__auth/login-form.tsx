@@ -4,9 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import { z } from "zod";
-import { login } from "@/actions/auth";
 import { LoginSchema } from "@/schemas/login";
 import Button from "@/components/core/button";
 import Form from "@/components/core/form";
@@ -16,22 +14,12 @@ import Typography from "@/components/core/typography";
 type LoginFormFields = z.infer<typeof LoginSchema>;
 
 export default function LoginForm() {
-  const [isPending, startTransition] = React.useTransition();
   const form = useForm<LoginFormFields>({
     resolver: zodResolver(LoginSchema),
     defaultValues: { username: "", password: "" },
   });
 
-  const processForm = (formData: LoginFormFields) => {
-    startTransition(async () => {
-      const { success, message } = await login(formData);
-      if (!success) {
-        toast.error(message);
-      } else {
-        toast.success(message);
-      }
-    });
-  };
+  const processForm = (_formData: LoginFormFields) => {};
 
   return (
     <Form.FormRoot {...form}>
@@ -44,11 +32,11 @@ export default function LoginForm() {
               <Form.FormLabel>Username</Form.FormLabel>
               <Form.FormMessage className="order-3" />
               <Form.FormControl>
-                <Input
+                <Input.InputField
                   type="text"
                   placeholder="sooraj"
                   autoComplete="off"
-                  disabled={isPending}
+                  disabled
                   {...field}
                 />
               </Form.FormControl>
@@ -63,23 +51,23 @@ export default function LoginForm() {
               <div className="flex items-center justify-between">
                 <Form.FormLabel>Password</Form.FormLabel>
                 <Typography.Text variant="sm/normal">
-                  <Link href="/">Forgot password</Link>
+                  <Link href="/auth/forgot-password">Forgot password</Link>
                 </Typography.Text>
               </div>
               <Form.FormMessage className="order-3" />
               <Form.FormControl>
-                <Input
+                <Input.InputField
                   type="password"
                   placeholder="●●●●●●●●"
                   autoComplete="off"
-                  disabled={isPending}
+                  disabled
                   {...field}
                 />
               </Form.FormControl>
             </Form.FormItem>
           )}
         />
-        <Button type="submit" block disabled={isPending} className="!mt-12">
+        <Button type="submit" block disabled className="!mt-12">
           <span>Sign in</span>
         </Button>
       </form>
