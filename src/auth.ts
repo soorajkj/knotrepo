@@ -2,39 +2,41 @@ import authConfig from "@/auth.config";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
 import { prisma } from "@/lib/prisma";
+import { logger } from "@/utils/logger";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
   callbacks: {
-    async signIn() {
-      return true;
-    },
     async session({ session, token }) {
-      session.user.id = token.sub as string;
+      if (!token.sub) throw new Error("Token subject is undefined");
+      session.user.id = token.sub;
       session.user.username = token.username;
       return session;
     },
     async jwt({ token }) {
-      if (!token.sub) return token;
       const user = await prisma.user.findUnique({ where: { id: token.sub } });
       if (!user) return token;
-      token.username = user.username as string;
+      if (!user.username) throw new Error("Username is null");
+      token.username = user.username;
       return token;
     },
   },
   events: {
+    async createUser({ user }) {
+      const { id, email } = user;
+      let username;
+      if (email) username = email.slice(0, email.indexOf("@"));
+      await prisma.user.update({ where: { id }, data: { username } });
+      logger.info(`User created with email: ${email}`);
+    },
     async linkAccount({ user }) {
-      await prisma.user.update({
-        where: { id: user.id },
-        data: { emailVerified: new Date() },
-      });
+      const { id, email } = user;
+      const emailVerified = new Date();
+      await prisma.user.update({ where: { id }, data: { emailVerified } });
+      logger.info(`User account verified with email: ${email}`);
     },
   },
-  session: { strategy: "jwt", maxAge: 432000 },
-  pages: {
-    error: "/auth/error",
-    signIn: "/auth/login",
-    newUser: "/auth/onboard",
-  },
+  pages: { newUser: "/auth/onboard" },
+  session: { strategy: "jwt" },
   ...authConfig,
 });

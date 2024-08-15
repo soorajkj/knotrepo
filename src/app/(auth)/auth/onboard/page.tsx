@@ -1,13 +1,10 @@
 import * as React from "react";
-import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import Typography from "@/components/core/typography";
 import OnboardForm from "@/components/auth/onboard-form";
 
 export default async function Page() {
   const session = await auth();
-
-  if (session?.user.username) redirect("/dashboard");
 
   return (
     <React.Fragment>
@@ -19,6 +16,9 @@ export default async function Page() {
           Welcome back! Please enter your details.
         </Typography.Text>
       </div>
+      <p className="whitespace-break-spaces">
+        {JSON.stringify(session, null, 8)}
+      </p>
       <OnboardForm />
     </React.Fragment>
   );
