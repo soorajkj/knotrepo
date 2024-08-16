@@ -16,20 +16,20 @@ export interface InputProps
 const InputField = React.forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => {
     const {
-      className,
       type,
       invalid = false,
       _prefix,
       _suffix,
       _prefixStyle = true,
       _suffixStyle = true,
+      className,
       ...rest
     } = props;
 
     return (
       <div
         aria-invalid={invalid || undefined}
-        className={cn(InputRootStyles({ invalid }))}
+        className={cn(InputRootStyles({ invalid, className }))}
       >
         {_prefix && (
           <InputAddon type="_prefix" styled={!!_prefixStyle}>
@@ -44,7 +44,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           type={type}
-          className={cn(InputStyles({ className }))}
+          className={cn(InputStyles())}
           {...rest}
         ></input>
       </div>
@@ -123,7 +123,6 @@ const InputStyles = cva([
 const InputAddonStyles = cva(
   [
     "inline-flex",
-    "h-10",
     "px-2",
     "shrink-0",
     "items-center",

@@ -60,6 +60,7 @@ const ButtonStyles = cva(
     "outline-none",
     "transition-all",
     "disabled:pointer-events-none",
+    "disabled:opacity-80",
   ],
   {
     variants: {

@@ -1,48 +1,30 @@
-"use client";
-
-import { forwardRef, Fragment, SVGAttributes } from "react";
+import * as React from "react";
 import * as VisuallyHiddenPrimitive from "@radix-ui/react-visually-hidden";
-import Dark from "@/public/icons/dark.svg";
-import Google from "@/public/icons/google.svg";
-import Light from "@/public/icons/light.svg";
-import LoaderCircle from "@/public/icons/loader-circle.svg";
-import Menu from "@/public/icons/menu.svg";
+import { icons as lucideIcons, LucideProps } from "lucide-react";
+import CIGithub from "@/public/icons/github.svg";
+import CIGoogle from "@/public/icons/google.svg";
 
-export const icons = {
-  dark: Dark,
-  google: Google,
-  light: Light,
-  loaderCircle: LoaderCircle,
-  menu: Menu,
+const icons = {
+  ...lucideIcons,
+  CIGithub,
+  CIGoogle,
 };
 
-interface IconProps extends SVGAttributes<SVGSVGElement> {
+interface IconProps extends Omit<LucideProps, "ref"> {
   icon: keyof typeof icons;
   label?: string;
 }
 
-const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
-  const { icon, width = 16, height = 16, label, ...rest } = props;
-
-  const Comp = icons[icon];
+export default function Icon(props: IconProps) {
+  const { icon, label, ...rest } = props;
+  const LucideIcon = icons[icon];
 
   return (
-    <Fragment>
-      <Comp
-        ref={ref}
-        aria-hidden={true}
-        focusable={false}
-        width={width}
-        height={height}
-        {...rest}
-      ></Comp>
+    <React.Fragment>
+      <LucideIcon aria-hidden={true} focusable={false} {...rest} />
       {label && (
         <VisuallyHiddenPrimitive.Root>{label}</VisuallyHiddenPrimitive.Root>
       )}
-    </Fragment>
+    </React.Fragment>
   );
-});
-
-Icon.displayName = "Icon";
-
-export default Icon;
+}

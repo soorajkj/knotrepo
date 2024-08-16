@@ -12,7 +12,7 @@ export default function HeaderAction(props: { session: Session | null }) {
   return (
     <div className="flex flex-1 items-center justify-end md:hidden">
       <Button variant="outline" onClick={() => setOpen((pre) => !pre)}>
-        <Icon icon="menu" label="menu" />
+        <Icon icon="Menu" label="menu" />
       </Button>
       <MobileMenu session={props.session} open={open} />
     </div>

@@ -10,17 +10,13 @@ export const POST = async (req: Request) => {
 
     if (!validatedFields.success) {
       return NextResponse.json(
-        { error: `server: ${validatedFields.error.errors[0].message}` },
+        { error: validatedFields.error.errors[0].message },
         { status: 400 }
       );
     }
 
     const { username } = validatedFields.data;
-    const user = await prisma.user.findUnique({
-      where: {
-        username,
-      },
-    });
+    const user = await prisma.user.findUnique({ where: { username } });
 
     if (!user) {
       return NextResponse.json(
