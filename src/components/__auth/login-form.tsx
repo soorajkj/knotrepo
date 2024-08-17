@@ -16,7 +16,8 @@ type LoginFormFields = z.infer<typeof LoginSchema>;
 export default function LoginForm() {
   const form = useForm<LoginFormFields>({
     resolver: zodResolver(LoginSchema),
-    defaultValues: { username: "", password: "" },
+    mode: "all",
+    defaultValues: { email: "", password: "" },
   });
 
   const processForm = (_formData: LoginFormFields) => {};
@@ -26,17 +27,17 @@ export default function LoginForm() {
       <form className="space-y-6" onSubmit={form.handleSubmit(processForm)}>
         <Form.FormField
           control={form.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <Form.FormItem className="flex flex-col">
-              <Form.FormLabel>Username</Form.FormLabel>
+              <Form.FormLabel>Email</Form.FormLabel>
               <Form.FormMessage className="order-3" />
               <Form.FormControl>
                 <Input.InputField
                   type="text"
-                  placeholder="sooraj"
+                  placeholder="yourmail@gmail.com"
                   autoComplete="off"
-                  disabled
+                  disabled={true}
                   {...field}
                 />
               </Form.FormControl>
@@ -50,7 +51,7 @@ export default function LoginForm() {
             <Form.FormItem className="flex flex-col">
               <div className="flex items-center justify-between">
                 <Form.FormLabel>Password</Form.FormLabel>
-                <Typography.Text variant="sm/normal">
+                <Typography.Text variant="sm/normal" className="leading-none">
                   <Link href="/auth/forgot-password">Forgot password</Link>
                 </Typography.Text>
               </div>
@@ -60,14 +61,19 @@ export default function LoginForm() {
                   type="password"
                   placeholder="●●●●●●●●"
                   autoComplete="off"
-                  disabled
+                  disabled={true}
                   {...field}
                 />
               </Form.FormControl>
             </Form.FormItem>
           )}
         />
-        <Button type="submit" block disabled className="!mt-12">
+        <Button
+          type="submit"
+          disabled={!form.formState.isValid}
+          block={true}
+          className="!mt-12"
+        >
           <span>Sign in</span>
         </Button>
       </form>

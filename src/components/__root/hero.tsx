@@ -3,7 +3,7 @@ import Container from "@/components/core/container";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-y-clip bg-zinc-100 py-12 sm:py-32">
+    <section className="relative overflow-y-clip bg-zinc-100 py-24 sm:py-48">
       <Container>
         <div className="relative mx-auto flex max-w-4xl flex-col items-center text-center">
           <div className="z-1 relative mb-8 flex">

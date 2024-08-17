@@ -14,6 +14,7 @@ type SignupFormFields = z.infer<typeof RegisterSchema>;
 export default function SignupForm() {
   const form = useForm<SignupFormFields>({
     resolver: zodResolver(RegisterSchema),
+    mode: "all",
     defaultValues: {
       email: "",
       password: "",
@@ -37,7 +38,7 @@ export default function SignupForm() {
                   type="email"
                   placeholder="example@gmail.com"
                   autoComplete="off"
-                  disabled
+                  disabled={true}
                   {...field}
                 />
               </Form.FormControl>
@@ -56,14 +57,19 @@ export default function SignupForm() {
                   type="password"
                   placeholder="●●●●●●●●"
                   autoComplete="off"
-                  disabled
+                  disabled={true}
                   {...field}
                 />
               </Form.FormControl>
             </Form.FormItem>
           )}
         />
-        <Button type="submit" block disabled className="!mt-12">
+        <Button
+          type="submit"
+          disabled={!form.formState.isValid}
+          block={true}
+          className="!mt-12"
+        >
           Get started
         </Button>
       </form>

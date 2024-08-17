@@ -1,6 +1,7 @@
 import authConfig from "@/auth.config";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
+import { generateFromEmail } from "unique-username-generator";
 import { prisma } from "@/lib/prisma";
 import { logger } from "@/utils/logger";
 
@@ -25,7 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async createUser({ user }) {
       const { id, email } = user;
       let username;
-      if (email) username = email.slice(0, email.indexOf("@"));
+      if (email) username = generateFromEmail(email, 3);
       await prisma.user.update({ where: { id }, data: { username } });
       logger.info(`User created with email: ${email}`);
     },
@@ -36,7 +37,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       logger.info(`User account verified with email: ${email}`);
     },
   },
-  pages: { newUser: "/auth/onboard" },
+  pages: { signIn: "/auth/register", error: "/auth/error" },
   session: { strategy: "jwt" },
   ...authConfig,
 });

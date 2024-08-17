@@ -18,7 +18,7 @@ export default async function Header() {
   const session = await auth();
 
   return (
-    <header className="sticky inset-x-0 top-0 z-30 bg-zinc-100 backdrop-blur-md">
+    <header className="sticky inset-x-0 top-0 z-30 bg-white/50 backdrop-blur-md">
       <Container className="relative after:absolute after:inset-x-0 after:bottom-0 after:-z-10 after:h-px after:bg-gradient-to-r after:from-transparent after:via-zinc-500/20">
         <div className="flex h-20 flex-grow items-center">
           <div className="flex flex-1 flex-shrink-0 flex-nowrap items-center justify-start">
