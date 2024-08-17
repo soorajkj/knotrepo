@@ -14,11 +14,11 @@ export default function page() {
           Welcome back! Please enter your details.
         </Typography.Text>
       </div>
-      <LoginForm />
+      <ContinueOAuth />
       <div className="my-8">
         <Separator />
       </div>
-      <ContinueOAuth />
+      <LoginForm />
       <div className="mt-8 flex flex-col space-y-4 sm:mx-auto sm:max-w-sm sm:text-center">
         <Typography.Text variant="sm/normal">
           Dont&apos;t have an account? <Link href="/auth/register">Signup</Link>

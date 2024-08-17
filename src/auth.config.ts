@@ -1,7 +1,10 @@
 import type { NextAuthConfig } from "next-auth";
-import GitHub from "next-auth/providers/github";
-import google from "next-auth/providers/google";
+import Github from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
 
 export default {
-  providers: [GitHub, google],
+  providers: [
+    Github({ allowDangerousEmailAccountLinking: true }),
+    Google({ allowDangerousEmailAccountLinking: true }),
+  ],
 } satisfies NextAuthConfig;

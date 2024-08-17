@@ -1,14 +1,8 @@
 import * as React from "react";
-import { redirect } from "next/navigation";
-import { auth } from "@/auth";
 import Typography from "@/components/core/typography";
 import OnboardForm from "@/components/auth/onboard-form";
 
-export default async function Page() {
-  const session = await auth();
-
-  if (session?.user.username) redirect("/dashboard");
-
+export default function Page() {
   return (
     <React.Fragment>
       <div className="mb-8 space-y-1 text-center">
