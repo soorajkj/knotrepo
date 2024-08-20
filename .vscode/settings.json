@@ -12,5 +12,7 @@
   ],
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
-  }
+  },
+  "git.decorations.enabled": false,
+  "scm.diffDecorationsGutterVisibility": "hover"
 }

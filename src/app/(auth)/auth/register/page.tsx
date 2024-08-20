@@ -16,12 +16,15 @@ export default function Page() {
       </div>
       <ContinueOAuth />
       <div className="my-8">
-        <Separator />
+        <Separator>Or</Separator>
       </div>
       <RegisterForm />
       <div className="mt-8 flex flex-col space-y-4 sm:mx-auto sm:max-w-sm sm:text-center">
         <Typography.Text variant="sm/normal">
-          Already have an account? <Link href="/auth/login">Login</Link>
+          Already have an account?{" "}
+          <Link href="/auth/login" className="dark:text-white">
+            Login
+          </Link>
         </Typography.Text>
         <Typography.Text variant="xs/normal">
           By continuing, you agree to our Terms of Service and Privacy Policy,

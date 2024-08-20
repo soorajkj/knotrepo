@@ -66,24 +66,27 @@ const Link = () => {
   return <p></p>;
 };
 
-const TitleStyles = cva(["font-family-manrope"], {
-  variants: {
-    level: {
-      1: "text-7xl",
-      2: "text-6xl",
-      3: "text-5xl",
-      4: "text-4xl",
-      5: "text-3xl",
-      6: "text-2xl",
+const TitleStyles = cva(
+  ["font-family-manrope", "text-neutral-900", "dark:text-neutral-200"],
+  {
+    variants: {
+      level: {
+        1: "text-7xl",
+        2: "text-6xl",
+        3: "text-5xl",
+        4: "text-4xl",
+        5: "text-3xl",
+        6: "text-2xl",
+      },
+      weight: {
+        normal: "font-normal",
+        medium: "font-medium",
+        semibold: "font-semibold",
+        bold: "font-bold",
+      },
     },
-    weight: {
-      normal: "font-normal",
-      medium: "font-medium",
-      semibold: "font-semibold",
-      bold: "font-bold",
-    },
-  },
-});
+  }
+);
 
 const TextStyles = cva(["font-family-manrope"], {
   variants: {

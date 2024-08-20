@@ -14,6 +14,7 @@ const config: Config = {
       "family-manrope": ["var(--font-family-manrope)"],
       "family-suezone": ["var(--font-family-suezone)"],
     },
+    extend: {},
   },
   plugins: [animate, forms({ strategy: "class" })],
 };

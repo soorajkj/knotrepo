@@ -72,6 +72,7 @@ const MobileMenuStyles = cva(
     "ease-in-out",
     "duration-500",
     "origin-top",
+    "dark:bg-neutral-900",
   ],
   {
     variants: {

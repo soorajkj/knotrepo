@@ -61,11 +61,11 @@ const AvatarRootStyles = cva(
   [
     "relative",
     "flex",
-    "h-9",
-    "w-9",
+    "size-10",
     "shrink-0",
     "overflow-hidden",
     "rounded-full",
+    "focus-visible:outline-none",
   ],
   {
     variants: {},

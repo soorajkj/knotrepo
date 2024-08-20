@@ -18,24 +18,24 @@ export default async function Header() {
   const session = await auth();
 
   return (
-    <header className="sticky inset-x-0 top-0 z-30 bg-white/50 backdrop-blur-md">
-      <Container className="relative after:absolute after:inset-x-0 after:bottom-0 after:-z-10 after:h-px after:bg-gradient-to-r after:from-transparent after:via-zinc-500/20">
-        <div className="flex h-20 flex-grow items-center">
-          <div className="flex flex-1 flex-shrink-0 flex-nowrap items-center justify-start">
+    <header className="sticky inset-x-0 top-0 z-30 bg-white backdrop-blur dark:bg-neutral-900/75">
+      <Container className="relative after:absolute after:inset-x-0 after:bottom-0 after:-z-10 after:h-px after:bg-gradient-to-r after:from-transparent after:via-neutral-50/10">
+        <div className="flex h-16 flex-grow items-center">
+          <div className="mr-10 flex flex-shrink-0 flex-nowrap items-center justify-start">
             <Link
               href="/"
-              aria-label="Hoppscotch"
-              className="inline-flex cursor-pointer select-none items-center justify-center outline-none"
+              aria-label="Biogram.io"
+              className="inline-flex cursor-pointer select-none items-center justify-center gap-2 text-neutral-900 outline-none dark:text-white"
             >
               <Image
                 src="/images/linkgram.svg"
                 loading="lazy"
-                alt="Hoppscotch"
+                alt="Biogram.io"
                 height={32}
                 width={32}
               ></Image>
-              <span className="ml-2 text-lg font-black sm:hidden lg:flex">
-                Hoppscotch
+              <span className="text-lg font-black sm:hidden lg:flex">
+                Biogram.io
               </span>
             </Link>
           </div>
@@ -44,12 +44,12 @@ export default async function Header() {
               {routes.map((route, index) => {
                 return (
                   <li key={index} className="inline-flex">
-                    <a
+                    <Link
                       href={route.url}
-                      className="relative z-10 flex flex-shrink-0 rounded-full border border-transparent px-4 py-2 text-sm font-semibold transition"
+                      className="relative z-10 flex flex-shrink-0 rounded-full border border-transparent px-4 py-2 text-sm font-semibold text-neutral-900 transition hover:text-emerald-500 dark:text-neutral-200 dark:hover:text-emerald-400"
                     >
                       {route.label}
-                    </a>
+                    </Link>
                   </li>
                 );
               })}
@@ -62,7 +62,7 @@ export default async function Header() {
               </Button>
             ) : (
               <React.Fragment>
-                <Button variant="outline" asChild>
+                <Button variant="secondary" asChild>
                   <Link href="/auth/login">Login</Link>
                 </Button>
                 <Button variant="primary" asChild>

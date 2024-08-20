@@ -15,11 +15,8 @@ model User {
   username      String?   @unique
   emailVerified DateTime?
   image         String?
-  bio           String?
-  avatarUrl     String?
-  links         Link[]
-  socials       Socials[]
   accounts      Account[]
+  page          Page?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
@@ -46,36 +43,39 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+model Page {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @unique @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+
+  bio       String?
+  avatarUrl String?
+
+  links   Link[]   @relation("PageLinks")
+  socials Social[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Link {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  url       String
-  order     Int
-  userId    String   @db.ObjectId
-  user      User     @relation(fields: [userId], references: [id])
+  id     String  @id @default(auto()) @map("_id") @db.ObjectId
+  url    String
+  title  String?
+  pageId String  @db.ObjectId
+  page   Page    @relation("PageLinks", fields: [pageId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Socials {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  type      Media
-  url       String
-  userId    String   @db.ObjectId
-  user      User     @relation(fields: [userId], references: [id])
+model Social {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  platform String
+  url      String
+  pageId   String @db.ObjectId
+  page     Page   @relation(fields: [pageId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@unique([userId, type])
-}
-
-enum Media {
-  TWITTER
-  INSTAGRAM
-  FACEBOOK
-  LINKEDIN
-  TIKTOK
-  WEBSITE
-  YOUTUBE
-  GITHUB
 }

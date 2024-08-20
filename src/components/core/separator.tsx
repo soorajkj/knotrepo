@@ -11,6 +11,7 @@ const Separator = React.forwardRef<
     VariantProps<typeof SeparatorStyles>
 >((props, ref) => {
   const {
+    children,
     className,
     orientation = "horizontal",
     decorative = true,
@@ -18,24 +19,43 @@ const Separator = React.forwardRef<
   } = props;
 
   return (
-    <SeparatorPrimitive.Root
-      ref={ref}
-      decorative={decorative}
-      orientation={orientation}
-      className={cn(SeparatorStyles({ orientation, className }))}
-      {...rest}
-    />
+    <div className={cn("relative flex items-center", className)}>
+      <SeparatorPrimitive.Root
+        ref={ref}
+        decorative={decorative}
+        orientation={orientation}
+        className={cn(SeparatorStyles({ orientation, className }))}
+        {...rest}
+      />
+      {children && (
+        <React.Fragment>
+          <span className="mx-2 text-xs font-medium text-neutral-500">
+            {children}
+          </span>
+          <SeparatorPrimitive.Root
+            ref={ref}
+            decorative={decorative}
+            orientation={orientation}
+            className={cn(SeparatorStyles({ orientation, className }))}
+            {...rest}
+          />
+        </React.Fragment>
+      )}
+    </div>
   );
 });
 
 const SeparatorStyles = cva(
   [
-    "bg-zinc-200",
+    "bg-neutral-200",
     "pointer-events-none",
     "relative",
     "flex",
+    "flex-1",
     "shrink-0",
     "items-center",
+    "leading-none",
+    "dark:bg-neutral-200/5",
   ],
   {
     variants: {

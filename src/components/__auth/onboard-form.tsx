@@ -64,7 +64,7 @@ export default function OnboardForm() {
     );
     if (form.formState.errors.username) return errorIcon;
     return available ? (
-      <Icon icon="CircleCheck" className="size-4 text-green-600" />
+      <Icon icon="CircleCheck" className="size-4 text-emerald-600" />
     ) : (
       errorIcon
     );
@@ -96,7 +96,7 @@ export default function OnboardForm() {
                 />
               </Form.FormControl>
               <Form.FormMessage
-                className={cn(info.success && "text-green-600")}
+                className={cn(info.success && "text-emerald-600")}
               >
                 {info.message}
               </Form.FormMessage>

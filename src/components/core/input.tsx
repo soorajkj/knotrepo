@@ -82,6 +82,7 @@ const InputRootStyles = cva(
     "outline-none",
     "rounded-lg",
     "overflow-hidden",
+    "dark:border-neutral-200/5",
   ],
   {
     variants: {
@@ -92,7 +93,7 @@ const InputRootStyles = cva(
           "focus-within:ring-red-600/20",
         ],
         false: [
-          "border-zinc-300",
+          "border-neutral-300",
           "focus-within:border-blue-300",
           "focus-within:ring-blue-100",
         ],
@@ -104,7 +105,7 @@ const InputRootStyles = cva(
 const InputStyles = cva([
   "inline-flex",
   "order-2",
-  "h-10",
+  "h-9",
   "flex-1",
   "w-full",
   "select-none",
@@ -114,10 +115,11 @@ const InputStyles = cva([
   "px-3",
   "py-2",
   "text-base",
-  "text-zinc-900",
-  "placeholder-zinc-400",
+  "text-neutral-900",
+  "placeholder-neutral-400",
   "outline-none",
   "disabled:cursor-not-allowed",
+  "dark:text-white",
 ]);
 
 const InputAddonStyles = cva(
@@ -128,7 +130,7 @@ const InputAddonStyles = cva(
     "items-center",
     "justify-center",
     "text-sm",
-    "text-zinc-500",
+    "text-neutral-500",
   ],
   {
     variants: {
@@ -138,19 +140,19 @@ const InputAddonStyles = cva(
       },
       styled: {
         false: ["border-transparent"],
-        true: ["border-zinc-200"],
+        true: ["border-neutral-200 dark:border-neutral-200/5"],
       },
     },
     compoundVariants: [
       {
         type: "_prefix",
         styled: true,
-        className: "border-r bg-zinc-100/40",
+        className: "border-r bg-neutral-100/40 dark:bg-neutral-900",
       },
       {
         type: "_suffix",
         styled: true,
-        className: "border-l bg-zinc-100/40",
+        className: "border-l bg-neutral-100/40 dark:bg-neutral-900",
       },
     ],
   }
