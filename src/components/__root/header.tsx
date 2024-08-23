@@ -24,18 +24,18 @@ export default async function Header() {
           <div className="mr-10 flex flex-shrink-0 flex-nowrap items-center justify-start">
             <Link
               href="/"
-              aria-label="Biogram.io"
+              aria-label="Supabase"
               className="inline-flex cursor-pointer select-none items-center justify-center gap-2 text-neutral-900 outline-none dark:text-white"
             >
               <Image
                 src="/images/linkgram.svg"
                 loading="lazy"
-                alt="Biogram.io"
-                height={32}
-                width={32}
+                alt="Supabase"
+                width={36}
+                height={36}
               ></Image>
-              <span className="text-lg font-black sm:hidden lg:flex">
-                Biogram.io
+              <span className="text-xl font-black leading-none sm:hidden lg:flex">
+                Supabase
               </span>
             </Link>
           </div>

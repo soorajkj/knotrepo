@@ -8,21 +8,21 @@ export default async function Header() {
   return (
     <header className="sticky top-0 border-b border-neutral-200 dark:border-neutral-200/5">
       <Container>
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-16 items-center justify-between">
           <Link
             href="/"
-            aria-label="Biogram.io"
+            aria-label="Supabase"
             className="inline-flex cursor-pointer select-none items-center justify-center gap-2 text-neutral-900 outline-none dark:text-white"
           >
             <Image
               src="/images/linkgram.svg"
               loading="lazy"
-              alt="Biogram.io"
+              alt="Supabase"
               height={32}
               width={32}
             ></Image>
             <span className="text-lg font-black sm:hidden lg:flex">
-              Biogram.io
+              Supabase
             </span>
           </Link>
           <div className="flex items-center gap-4">

@@ -29,7 +29,7 @@ const Separator = React.forwardRef<
       />
       {children && (
         <React.Fragment>
-          <span className="mx-2 text-xs font-medium text-neutral-500">
+          <span className="mx-2 text-xs font-medium text-neutral-200">
             {children}
           </span>
           <SeparatorPrimitive.Root

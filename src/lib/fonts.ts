@@ -1,6 +1,6 @@
-import { Caprasimo, Plus_Jakarta_Sans } from "next/font/google";
+import { Caprasimo, Manrope } from "next/font/google";
 
-export const manrope = Plus_Jakarta_Sans({
+export const manrope = Manrope({
   variable: "--font-family-manrope",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],

@@ -11,7 +11,7 @@ export default function page() {
       <div className="mb-8 space-y-1 text-center">
         <Typography.Title variant="5/bold">Welcome back!</Typography.Title>
         <Typography.Text variant="sm/normal">
-          Welcome back! Please enter your details.
+          Sign in to your account
         </Typography.Text>
       </div>
       <ContinueOAuth />
