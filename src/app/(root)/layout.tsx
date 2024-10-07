@@ -1,6 +1,6 @@
 import * as React from "react";
-import Footer from "@/components/root/footer";
-import Header from "@/components/root/header";
+import Footer from "@/components/root/Footer";
+import Header from "@/components/root/Header";
 
 interface LayoutProps extends Readonly<{ children: React.ReactNode }> {}
 

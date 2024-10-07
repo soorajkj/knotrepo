@@ -61,7 +61,7 @@ const AvatarRootStyles = cva(
   [
     "relative",
     "flex",
-    "size-10",
+    "size-8",
     "shrink-0",
     "overflow-hidden",
     "rounded-full",

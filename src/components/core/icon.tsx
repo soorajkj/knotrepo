@@ -3,15 +3,19 @@ import * as VisuallyHiddenPrimitive from "@radix-ui/react-visually-hidden";
 import { icons as lucideIcons, LucideProps } from "lucide-react";
 import CIGithub from "@/public/icons/github.svg";
 import CIGoogle from "@/public/icons/google.svg";
+import CITwitter from "@/public/icons/twitter.svg";
 
-const icons = {
+export const icons = {
   ...lucideIcons,
   CIGithub,
   CIGoogle,
+  CITwitter,
 };
 
+export type IconTypes = keyof typeof icons;
+
 interface IconProps extends Omit<LucideProps, "ref"> {
-  icon: keyof typeof icons;
+  icon: IconTypes;
   label?: string;
 }
 

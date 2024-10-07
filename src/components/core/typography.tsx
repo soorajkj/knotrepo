@@ -36,59 +36,62 @@ const Title = forwardRef<HTMLHeadingElement, TitleProps>((props, ref) => {
 type TextStyleProps = VariantProps<typeof TextStyles>;
 
 interface TextProps
-  extends React.ButtonHTMLAttributes<HTMLParagraphElement>,
+  extends React.HTMLAttributes<HTMLParagraphElement>,
     Omit<TextStyleProps, "size" | "weight"> {
-  variant: `${NonNullable<TextStyleProps["size"]>}/${NonNullable<
+  variant?: `${NonNullable<TextStyleProps["size"]>}/${NonNullable<
     TextStyleProps["weight"]
   >}`;
+  as?: keyof Pick<
+    JSX.IntrinsicElements,
+    "p" | "code" | "strong" | "span" | "small" | "mark" | "kbd"
+  >;
 }
 
 const Text = forwardRef<HTMLParagraphElement, TextProps>((props, ref) => {
-  const { children, className, variant, ...rest } = props;
+  const {
+    as: Tag = "p",
+    children,
+    className,
+    variant = "sm/normal",
+    ...rest
+  } = props;
 
-  const [size, weight] = variant.split("/") as [
+  const [size, weight] = variant?.split("/") as [
     TextStyleProps["size"],
     TextStyleProps["weight"],
   ];
 
   return (
-    <p
+    <Tag
       ref={ref}
       className={cn(TextStyles({ size, weight, className }))}
       {...rest}
     >
       {children}
-    </p>
+    </Tag>
   );
 });
 
-const Link = () => {
-  return <p></p>;
-};
-
-const TitleStyles = cva(
-  ["font-family-manrope", "text-neutral-900", "dark:text-neutral-200"],
-  {
-    variants: {
-      level: {
-        1: "text-7xl",
-        2: "text-6xl",
-        3: "text-5xl",
-        4: "text-4xl",
-        5: "text-3xl",
-        6: "text-2xl",
-      },
-      weight: {
-        normal: "font-normal",
-        medium: "font-medium",
-        semibold: "font-semibold",
-        bold: "font-bold",
-      },
+const TitleStyles = cva([], {
+  variants: {
+    level: {
+      1: "text-7xl",
+      2: "text-6xl",
+      3: "text-5xl",
+      4: "text-4xl",
+      5: "text-3xl",
+      6: "text-2xl",
     },
-  }
-);
+    weight: {
+      normal: "font-normal",
+      medium: "font-medium",
+      semibold: "font-semibold",
+      bold: "font-bold",
+    },
+  },
+});
 
-const TextStyles = cva(["font-family-manrope"], {
+const TextStyles = cva([""], {
   variants: {
     size: {
       xl: "text-xl",
@@ -109,6 +112,6 @@ const TextStyles = cva(["font-family-manrope"], {
 Title.displayName = "Title";
 Text.displayName = "Text";
 
-const Typography = { Title, Text, Link };
+const Typography = { Title, Text };
 
 export default Typography;

@@ -30,9 +30,8 @@ export default Label;
 const LabelStyles = cva([
   "inline-block",
   "text-sm",
-  "font-semibold",
   "leading-none",
-  "text-misty-700",
+  "text-foreground-light",
   "peer-disabled:cursor-not-allowed",
   "peer-disabled:opacity-70",
 ]);

@@ -64,7 +64,7 @@ const MobileMenuStyles = cva(
   [
     "absolute",
     "left-0",
-    "top-20",
+    "top-16",
     "w-full",
     "bg-white",
     "transition-all",

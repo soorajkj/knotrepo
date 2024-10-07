@@ -21,20 +21,22 @@ export default function SignupForm() {
     },
   });
 
-  const processForm = (_formData: SignupFormFields) => {};
+  const handleFormSubmit = (_formData: SignupFormFields) => {};
 
   return (
     <Form.FormRoot {...form}>
-      <form className="space-y-6" onSubmit={form.handleSubmit(processForm)}>
+      <form
+        className="space-y-6"
+        onSubmit={form.handleSubmit(handleFormSubmit)}
+      >
         <Form.FormField
           control={form.control}
           name="email"
           render={({ field }) => (
-            <Form.FormItem className="flex flex-col">
-              <Form.FormLabel>Email</Form.FormLabel>
+            <Form.FormItem className="flex flex-col-reverse">
               <Form.FormMessage className="order-3" />
               <Form.FormControl>
-                <Input.InputField
+                <Input
                   type="email"
                   placeholder="example@gmail.com"
                   autoComplete="off"
@@ -42,6 +44,7 @@ export default function SignupForm() {
                   {...field}
                 />
               </Form.FormControl>
+              <Form.FormLabel>Email</Form.FormLabel>
             </Form.FormItem>
           )}
         />
@@ -49,11 +52,10 @@ export default function SignupForm() {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <Form.FormItem className="flex flex-col">
-              <Form.FormLabel>Password</Form.FormLabel>
+            <Form.FormItem className="flex flex-col-reverse">
               <Form.FormMessage className="order-3" />
               <Form.FormControl>
-                <Input.InputField
+                <Input
                   type="password"
                   placeholder="●●●●●●●●"
                   autoComplete="off"
@@ -61,11 +63,13 @@ export default function SignupForm() {
                   {...field}
                 />
               </Form.FormControl>
+              <Form.FormLabel>Password</Form.FormLabel>
             </Form.FormItem>
           )}
         />
         <Button
           type="submit"
+          variant="primary"
           disabled={!form.formState.isValid}
           block={true}
           className="!mt-12"

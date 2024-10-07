@@ -20,7 +20,7 @@ export default function Toaster(prosp: ToasterProps) {
         classNames: {
           default: "group-[.toaster]:bg-neutral-900",
           info: "group-[.toaster]:bg-blue-800",
-          success: "group-[.toaster]:bg-emerald-800",
+          success: "group-[.toaster]:bg-orange-800",
           error: "group-[.toaster]:bg-red-800",
           warning: "group-[.toaster]:bg-yellow-800",
         },

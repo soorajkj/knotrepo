@@ -7,12 +7,12 @@ import Icon from "@/components/core/icon";
 export default function ContinueOAuth() {
   return (
     <div className="flex flex-col gap-4">
-      <Button variant="secondary" block onClick={() => signIn("google")}>
-        <Icon icon="CIGoogle" width={20} height={20} />
+      <Button block onClick={() => signIn("google")}>
+        <Icon icon="CIGoogle" className="size-5" />
         <span>Continue with Google</span>
       </Button>
-      <Button variant="secondary" block onClick={() => signIn("github")}>
-        <Icon icon="CIGithub" width={20} height={20} />
+      <Button block onClick={() => signIn("github")}>
+        <Icon icon="CIGithub" className="size-5" />
         <span>Continue with Github</span>
       </Button>
     </div>

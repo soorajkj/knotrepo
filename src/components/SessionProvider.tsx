@@ -1,10 +1,12 @@
+"use client";
+
 import React from "react";
 import * as NextSession from "next-auth/react";
 
 interface SessionProviderProps extends NextSession.SessionProviderProps {}
 
 export default function SessionProvider(props: SessionProviderProps) {
-  const { children, session } = props;
+  const { session, children } = props;
 
   return (
     <NextSession.SessionProvider session={session}>

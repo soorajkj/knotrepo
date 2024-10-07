@@ -4,7 +4,7 @@ import Link from "next/link";
 import { auth } from "@/auth";
 import Button from "@/components/core/button";
 import Container from "@/components/core/container";
-import HeaderAction from "@/components/root/header-action";
+import HeaderAction from "@/components/root/HeaderAction";
 
 const routes = [
   { url: "/", label: "Features", status: false },
@@ -18,7 +18,7 @@ export default async function Header() {
   const session = await auth();
 
   return (
-    <header className="sticky inset-x-0 top-0 z-30 bg-white backdrop-blur dark:bg-neutral-900/75">
+    <header className="sticky inset-x-0 top-0 z-30 bg-background/90 backdrop-blur dark:bg-background/95">
       <Container className="relative after:absolute after:inset-x-0 after:bottom-0 after:-z-10 after:h-px after:bg-gradient-to-r after:from-transparent after:via-neutral-50/10">
         <div className="flex h-16 flex-grow items-center">
           <div className="mr-10 flex flex-shrink-0 flex-nowrap items-center justify-start">
@@ -31,10 +31,10 @@ export default async function Header() {
                 src="/images/linkgram.svg"
                 loading="lazy"
                 alt="Supabase"
-                width={36}
-                height={36}
+                width={28}
+                height={28}
               ></Image>
-              <span className="text-xl font-black leading-none sm:hidden lg:flex">
+              <span className="text-lg font-semibold leading-none sm:hidden lg:flex">
                 Supabase
               </span>
             </Link>
@@ -55,17 +55,17 @@ export default async function Header() {
               })}
             </ul>
           </nav>
-          <div className="hidden flex-1 items-center justify-end gap-4 md:flex">
+          <div className="hidden flex-1 items-center justify-end gap-2 md:flex">
             {session?.user ? (
-              <Button variant="primary" asChild>
+              <Button variant="primary" size={"tiny"} asChild>
                 <Link href="/dashboard">Dashboard</Link>
               </Button>
             ) : (
               <React.Fragment>
-                <Button variant="secondary" asChild>
+                <Button variant="default" size={"tiny"} asChild>
                   <Link href="/auth/login">Login</Link>
                 </Button>
-                <Button variant="primary" asChild>
+                <Button variant="primary" size={"tiny"} asChild>
                   <Link href="/auth/register">Get Started</Link>
                 </Button>
               </React.Fragment>

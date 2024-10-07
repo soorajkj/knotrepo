@@ -1,6 +1,6 @@
 import * as React from "react";
 import Container from "@/components/core/container";
-import Plan from "@/components/root/plan";
+import Plan from "@/components/root/Plan";
 
 export default function Pricing() {
   return (
@@ -11,7 +11,7 @@ export default function Pricing() {
             <h2 className="mb-4 text-3xl font-semibold text-neutral-900 dark:text-neutral-50">
               Predictable pricing, designed to scale
             </h2>
-            <p className="text-base font-medium">
+            <p className="text-base font-medium text-foreground-light">
               Choose the plan that&apos;s right for you. Whether you&apos;re
               tinkering or looking to scale up, we have a pricing model to fit
               your needs.

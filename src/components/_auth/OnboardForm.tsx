@@ -10,7 +10,6 @@ import { OnboardSchema } from "@/schemas/onboard";
 import { cn } from "@/utils/cn";
 import Button from "@/components/core/button";
 import Form from "@/components/core/form";
-import Icon from "@/components/core/icon";
 import Input from "@/components/core/input";
 
 type LoginFormFields = z.infer<typeof OnboardSchema>;
@@ -52,30 +51,17 @@ export default function OnboardForm() {
     debouncedHandler(value);
   };
 
-  const processForm = (_formData: LoginFormFields) => {};
-
-  const renderSuffixIcon = () => {
-    if (!interacted) return null;
-    if (loading) {
-      return <Icon icon="LoaderCircle" className="size-4 animate-spin" />;
-    }
-    const errorIcon = (
-      <Icon icon="CircleAlert" className="size-4 text-red-600" />
-    );
-    if (form.formState.errors.username) return errorIcon;
-    return available ? (
-      <Icon icon="CircleCheck" className="size-4 text-emerald-600" />
-    ) : (
-      errorIcon
-    );
-  };
+  const handleFormSubmit = (_formData: LoginFormFields) => {};
 
   const { formState } = form;
   const invalid = !!formState.errors.username || !available;
 
   return (
     <Form.FormRoot {...form}>
-      <form className="space-y-6" onSubmit={form.handleSubmit(processForm)}>
+      <form
+        className="space-y-6"
+        onSubmit={form.handleSubmit(handleFormSubmit)}
+      >
         <Form.FormField
           control={form.control}
           name="username"
@@ -83,20 +69,17 @@ export default function OnboardForm() {
             <Form.FormItem className="flex flex-col">
               <Form.FormLabel>Username</Form.FormLabel>
               <Form.FormControl className="relative">
-                <Input.InputField
+                <Input
                   type="text"
                   placeholder="yourname"
                   autoComplete="off"
-                  _prefix="linktree"
-                  _suffix={renderSuffixIcon()}
-                  _suffixStyle={false}
                   onChangeCapture={handleCaptureChange}
-                  invalid={interacted && invalid}
+                  aria-invalid={interacted && invalid}
                   {...field}
                 />
               </Form.FormControl>
               <Form.FormMessage
-                className={cn(info.success && "text-emerald-600")}
+                className={cn(info.success && "text-orange-600")}
               >
                 {info.message}
               </Form.FormMessage>

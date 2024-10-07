@@ -75,7 +75,7 @@ const FormItem = React.forwardRef<
 
   return (
     <FormItemContext.Provider value={{ id }}>
-      <div ref={ref} className={cn(["space-y-2"], className)} {...rest}></div>
+      <div ref={ref} className={cn(["gap-2"], className)} {...rest}></div>
     </FormItemContext.Provider>
   );
 });
@@ -104,8 +104,6 @@ const FormControl = React.forwardRef<
   const { error, formItemId, formDescriptionId, formMessageId } =
     useFormField();
 
-  const _props = { ...rest, invalid: !!error };
-
   return (
     <Slot
       ref={ref}
@@ -117,7 +115,7 @@ const FormControl = React.forwardRef<
       }
       aria-invalid={!!error}
       className={cn("relative", className)}
-      {..._props}
+      {...rest}
     />
   );
 });

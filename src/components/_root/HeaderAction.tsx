@@ -4,7 +4,7 @@ import * as React from "react";
 import { Session } from "next-auth";
 import Button from "@/components/core/button";
 import Icon from "@/components/core/icon";
-import MobileMenu from "@/components/root/mobile-menu";
+import MobileMenu from "@/components/root/MobileMenu";
 
 export default function HeaderAction(props: { session: Session | null }) {
   const [open, setOpen] = React.useState(false);

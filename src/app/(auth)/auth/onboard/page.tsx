@@ -1,6 +1,6 @@
 import * as React from "react";
 import Typography from "@/components/core/typography";
-import OnboardForm from "@/components/auth/onboard-form";
+import OnboardForm from "@/components/auth/OnboardForm";
 
 export default function Page() {
   return (
