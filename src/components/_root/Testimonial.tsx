@@ -15,7 +15,7 @@ export default function Testimonial(props: TestimonialProps) {
   return (
     <Link
       target="_blank"
-      className="group/tweet-card z-0 col-span-3 block break-inside-avoid-column"
+      className="group/tweet-card z-0 block break-inside-avoid-column"
       href={props.url}
     >
       <div className="rounded-2xl border bg-surface-75 p-6 drop-shadow-sm transition-colors group-hover/tweet-card:border-foreground-muted">

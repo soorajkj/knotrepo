@@ -6,7 +6,7 @@ import _ from "lodash";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Container from "@/components/core/container";
-import MasonryGrid from "@/components/pattern/MasonryGrid";
+import Masonry from "@/components/core/masonry";
 import Testimonial from "@/components/root/Testimonial";
 import "swiper/css";
 
@@ -41,7 +41,7 @@ export default function Testimonials() {
             >
               {_.chunk(tweets, 8).map((group, i) => (
                 <SwiperSlide key={i}>
-                  <MasonryGrid breakpoints={{ 350: 2, 750: 3, 1200: 4 }}>
+                  <Masonry columns={{ 640: 1, 768: 2, 1280: 4 }}>
                     {group.map((tweet) => (
                       <Testimonial
                         key={tweet.url}
@@ -51,7 +51,7 @@ export default function Testimonials() {
                         img_url={tweet.img_url}
                       />
                     ))}
-                  </MasonryGrid>
+                  </Masonry>
                 </SwiperSlide>
               ))}
             </Swiper>
