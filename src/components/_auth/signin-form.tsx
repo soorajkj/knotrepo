@@ -1,14 +1,12 @@
-/* eslint-disable no-console */
-
 "use client";
 
 import * as React from "react";
 import Link from "next/link";
-import { signAction } from "@/actions/auth/signin";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { SigninSchema } from "@/schemas/signin";
+import { authClient } from "@/lib/auth-client";
 import Button from "@/components/core/button";
 import Checkbox from "@/components/core/checkbox";
 import Form from "@/components/core/form";
@@ -24,14 +22,25 @@ export default function SigninForm() {
     defaultValues: {
       email: "febin@gmail.com",
       password: "Password123@",
-      remember: false,
+      rememberMe: true,
     },
   });
 
   const handleFormSubmit = async (formData: SigninFormFields) => {
-    signAction(formData).then((res) => {
-      console.log(res);
-    });
+    const { email, password, rememberMe } = formData;
+    const _response = await authClient.signIn.email(
+      {
+        rememberMe,
+        email,
+        password,
+        callbackURL: "/dashboard",
+      },
+      {
+        onRequest: () => {},
+        onSuccess: () => {},
+        onError: () => {},
+      }
+    );
   };
 
   return (
@@ -80,7 +89,7 @@ export default function SigninForm() {
         <div className="flex items-center justify-between gap-4">
           <Form.FormField
             control={form.control}
-            name="remember"
+            name="rememberMe"
             render={({ field }) => (
               <Form.FormItem className="flex flex-row-reverse items-center">
                 <Form.FormLabel>Remember for 30 days</Form.FormLabel>

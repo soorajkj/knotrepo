@@ -1,11 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { signupAction } from "@/actions/auth/signup";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { SignupSchema } from "@/schemas/signup";
+import { authClient } from "@/lib/auth-client";
 import Button from "@/components/core/button";
 import Form from "@/components/core/form";
 import Input from "@/components/core/input";
@@ -13,19 +13,39 @@ import Input from "@/components/core/input";
 export type SignupFormFields = z.infer<typeof SignupSchema>;
 
 export default function SignupForm() {
+  const [loading, setLoading] = React.useState(false);
   const form = useForm<SignupFormFields>({
     resolver: zodResolver(SignupSchema),
     mode: "onChange",
     defaultValues: {
       email: "",
-      password: "Password123@",
+      password: "",
     },
   });
 
   const handleFormSubmit = async (formData: SignupFormFields) => {
-    signupAction(formData).then((res) => {
-      if (res.success) form.reset();
-    });
+    const { email, password } = formData;
+    await authClient.signUp.email(
+      {
+        email,
+        name: "Test User",
+        password,
+      },
+      {
+        onRequest: () => {
+          setLoading(true);
+        },
+        onSuccess: () => {
+          setLoading(false);
+          form.reset();
+          alert("User created succesfuly");
+        },
+        onError: (context) => {
+          setLoading(false);
+          alert(context.error.message);
+        },
+      }
+    );
   };
 
   return (
@@ -73,7 +93,7 @@ export default function SignupForm() {
         />
 
         <Button type="submit" disabled={!form.formState.isValid} block={true}>
-          Get started
+          {loading ? "Submitting..." : "Get started"}
         </Button>
       </form>
     </Form.FormRoot>

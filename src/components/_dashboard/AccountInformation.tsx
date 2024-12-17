@@ -2,7 +2,6 @@
 
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Collapsible from "@/components/core/collapsible";
@@ -19,13 +18,12 @@ const FormSchema = z.object({
 type FormFields = z.infer<typeof FormSchema>;
 
 export default function AccountInformation() {
-  const session = useSession();
   const form = useForm<FormFields>({
     resolver: zodResolver(FormSchema),
     mode: "all",
     defaultValues: {
       username: "",
-      email: session.data?.user.email ?? "",
+      email: "",
     },
   });
 

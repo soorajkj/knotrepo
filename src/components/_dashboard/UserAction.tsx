@@ -1,36 +1,43 @@
 "use client";
 
 import * as React from "react";
-import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 import Avatar from "@/components/core/avatar";
 import Icon from "@/components/core/icon";
 
 export default function UserAction() {
-  const session = useSession();
+  const router = useRouter();
+  const { data } = authClient.useSession();
+
+  const handleSignOut = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => router.push("/"),
+      },
+    });
+  };
 
   return (
     <div
       className="flex cursor-pointer items-center gap-2"
-      onClick={() => signOut()}
+      onClick={handleSignOut}
     >
       <Avatar.AvatarRoot>
-        <Avatar.AvatarImage
-          src={String(session.data?.user.image ?? "")}
-          alt={""}
-        />
+        <Avatar.AvatarImage src={data?.user.image ?? ""} alt={"User image"} />
         <Avatar.AvatarFallback>
-          {session.data?.user.email?.charAt(0).toUpperCase()}
+          {data?.user.email.charAt(0).toUpperCase()}
         </Avatar.AvatarFallback>
       </Avatar.AvatarRoot>
-      <div className="text-foreground-lighter flex w-full flex-1 flex-col items-start truncate text-left">
-        <h6 className="text-sm text-foreground">{session.data?.user.name}</h6>
-        <p className="text-xs">{session.data?.user.email}</p>
+      <div className="flex w-full flex-1 flex-col items-start truncate text-left">
+        <h6 className="text-sm">{data?.user.name}</h6>
+        <p className="text-xs">{data?.user.email}</p>
       </div>
       <div className="relative">
         <Icon
           icon="LogOut"
-          strokeWidth={1}
-          className="text-foreground-light size-3.5 transition group-hover:text-foreground"
+          strokeWidth={2}
+          className="size-4 transition"
           label="Logout"
         />
       </div>

@@ -1,11 +1,12 @@
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
-import Icon from "../core/icon";
-import { auth } from "@/auth";
 import Logo from "@/public/images/linkgram.svg";
+import { authClient } from "@/lib/auth-client";
 import Button from "@/components/core/button";
 import Container from "@/components/core/container";
-import HeaderAction from "@/components/root/HeaderAction";
+import Icon from "@/components/core/icon";
 
 const routes = [
   { url: "/", label: "Features", status: false },
@@ -15,8 +16,8 @@ const routes = [
   { url: "/", label: "Docs", status: false },
 ];
 
-export default async function Header() {
-  const session = await auth();
+export default function Header() {
+  const session = authClient.useSession();
 
   return (
     <header className="sticky inset-x-0 top-0 z-40 w-full flex-none lg:z-50">
@@ -49,7 +50,7 @@ export default async function Header() {
               </ul>
             </nav>
             <div className="hidden flex-1 items-center justify-end gap-2 md:flex">
-              {session?.user ? (
+              {session.data?.session ? (
                 <Button
                   variant="primary"
                   size="md"
@@ -61,17 +62,21 @@ export default async function Header() {
                 </Button>
               ) : (
                 <React.Fragment>
-                  <Button size="md" variant="transparent" asChild>
-                    <Link href="/auth/login">Login</Link>
-                  </Button>
                   <Button
-                    variant="primary"
-                    size="md"
+                    variant="transparent"
                     shape="pill"
                     className="px-5"
                     asChild
                   >
-                    <Link href="/auth/register">
+                    <Link href="/auth/signin">Login</Link>
+                  </Button>
+                  <Button
+                    variant="primary"
+                    shape="pill"
+                    className="px-5"
+                    asChild
+                  >
+                    <Link href="/auth/signup">
                       <span>Get Started</span>
                       <Icon icon="ArrowRight" className="size-4" />
                     </Link>
@@ -79,7 +84,6 @@ export default async function Header() {
                 </React.Fragment>
               )}
             </div>
-            <HeaderAction session={session} />
           </div>
         </div>
       </Container>

@@ -6,5 +6,5 @@ export const SigninSchema = z.object({
     .email("Please enter a valid email address")
     .min(1, { message: "Email is required" }),
   password: z.string().min(1, { message: "Password is required" }),
-  remember: z.boolean().optional(),
+  rememberMe: z.boolean().optional(),
 });

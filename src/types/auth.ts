@@ -1,3 +1,7 @@
-import { OAuthProviderType } from "next-auth/providers";
+import { SocialProviderList } from "better-auth/social-providers";
 
-export type AppOAuthProvider = Extract<OAuthProviderType, "google" | "github">;
+// import { OAuthProviderType } from "next-auth/providers";
+
+// export type AppOAuthProvider = Extract<SocialProviders, "google" | "github">;
+
+export type AppOAuthProvider = Extract<SocialProviderList, "google" | "github">;
