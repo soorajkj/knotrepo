@@ -20,7 +20,7 @@ export default function AccountDeletion() {
             </Typography.Text>
           </Alert.AlertDescription>
           <div className="mt-3">
-            <Button variant="danger" size="tiny">
+            <Button destructive size="sm">
               Request to delete account
             </Button>
           </div>

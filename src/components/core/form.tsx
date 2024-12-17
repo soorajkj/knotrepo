@@ -2,7 +2,7 @@ import * as React from "react";
 import type * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
 import * as ReactHookForm from "react-hook-form";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/classnames";
 import Label from "@/components/core/label";
 
 const FormRoot = ReactHookForm.FormProvider;
@@ -157,7 +157,7 @@ const FormMessage = React.forwardRef<
     <p
       ref={ref}
       id={formMessageId}
-      className={cn(["text-sm", "text-red-600"], className)}
+      className={cn(["text-xs", "text-destructive"], className)}
       {...rest}
     >
       {body}
@@ -185,7 +185,7 @@ const UncontrolledFormMessage = React.forwardRef<
     <p
       ref={ref}
       id={formMessageId}
-      className={cn(["text-xm", "text-red-700"], className)}
+      className={cn(["text-xs", "text-red-700"], className)}
       {...rest}
     >
       {body}

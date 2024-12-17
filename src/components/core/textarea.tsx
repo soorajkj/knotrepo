@@ -1,17 +1,18 @@
 import * as React from "react";
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/classnames";
 
 export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement>,
     VariantProps<typeof TextareaStyles> {}
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, ...props }, ref) => {
+  ({ disabled, className, ...props }, ref) => {
     return (
       <textarea
         ref={ref}
         className={cn(TextareaStyles({ className }))}
+        disabled={disabled}
         {...props}
       />
     );
@@ -20,23 +21,24 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
 const TextareaStyles = cva([
   "flex",
-  "min-h-20",
-  "w-full",
-  "rounded-md",
+  "min-h-32",
+  "resize-none",
+  "rounded-lg",
   "border",
-  "border-control",
-  "bg-control",
-  "px-3",
+  "bg-background",
+  "w-full",
+  "px-4",
   "py-2",
   "text-sm",
-  "placeholder:text-foreground-muted",
-  "focus-visible:outline-none",
-  "focus-visible:ring-2",
-  "focus-visible:ring-background-control",
-  "focus-visible:ring-offset-2",
-  "focus-visible:ring-offset-foreground-muted",
-  "disabled:cursor-not-allowed",
-  "disabled:opacity-50",
+  "leading-6",
+  "shadow-wg-xs",
+  "transition-colors",
+  "duration-100",
+  "placeholder:text-surface-500",
+  "outline-primary",
+  "focus:outline",
+  "focus:outline-2",
+  "focus:-outline-offset-1",
   "aria-[invalid=true]:bg-destructive-200",
   "aria-[invalid=true]:border-destructive-400",
   "aria-[invalid=true]:focus:border-destructive",

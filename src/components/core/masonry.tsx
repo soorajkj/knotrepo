@@ -1,45 +1,15 @@
-"use client";
-
 import * as React from "react";
 import _ from "lodash";
-import { useWindowSize } from "usehooks-ts";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/classnames";
 
-type Breakpoints = Record<number, number>;
-type Columns = number | Breakpoints;
+interface MesonryProps extends React.HTMLAttributes<HTMLDivElement> {
+  count: number;
+}
 
-const DEFAULT_COLUMNS = 3;
+export default function Masonry(props: MesonryProps) {
+  const { children, count = 3, className } = props;
 
-const columnCount = (breakpoints: Breakpoints, width: number): number => {
-  const sortedBreakPoints = Object.entries(breakpoints)
-    .map(([breakpoint, column]) => ({ breakpoint, column }))
-    .sort((a, b) => parseInt(a.breakpoint) - parseInt(b.breakpoint));
-
-  let count = sortedBreakPoints[0].column;
-  for (let i = 0; i < sortedBreakPoints.length; i++) {
-    if (width >= parseInt(sortedBreakPoints[i].breakpoint)) {
-      count = sortedBreakPoints[i].column;
-    }
-  }
-
-  return count;
-};
-
-const useColumnsCount = (columns: Columns) => {
-  const { width } = useWindowSize();
-
-  const columnsCount = React.useMemo(() => {
-    if (!_.isObject(columns)) return columns;
-    return columnCount(columns as Breakpoints, width);
-  }, [columns, width]);
-
-  return columnsCount;
-};
-
-const useMasonry = (children: React.ReactNode, columns: Columns) => {
-  const count = useColumnsCount(columns);
-
-  const columnData = React.useMemo(() => {
+  const data = React.useMemo(() => {
     const group = _.times(count, () => [] as React.ReactNode[]);
     React.Children.toArray(children).forEach((child, index) => {
       return group[index % count].push(child);
@@ -47,44 +17,14 @@ const useMasonry = (children: React.ReactNode, columns: Columns) => {
 
     return group;
   }, [children, count]);
-  return columnData;
-};
-
-const Masonry = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
-    columns?: Columns;
-    gap?: number;
-  }
->((props, ref) => {
-  const {
-    children,
-    columns = DEFAULT_COLUMNS,
-    gap = 16,
-    className,
-    style,
-    ...rest
-  } = props;
-
-  const columnData = useMasonry(children, columns);
 
   return (
     <div
-      ref={ref}
-      className={cn("grid grid-flow-col", className)}
-      style={{
-        gridTemplateColumns: `repeat(${useColumnsCount(columns)}, minmax(0, 1fr))`,
-        gap: `${gap}px`,
-        ...style,
-      }}
-      {...rest}
+      className={cn("grid grid-flow-col gap-6", className)}
+      style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
     >
-      {columnData.map((column, index) => (
-        <div
-          key={index}
-          className="flex flex-1 flex-col"
-          style={{ gap: `${gap}px` }}
-        >
+      {data.map((column, index) => (
+        <div key={index} className="flex flex-1 flex-col gap-6">
           {column.map((child, childIndex) => (
             <React.Fragment key={childIndex}>{child}</React.Fragment>
           ))}
@@ -92,7 +32,4 @@ const Masonry = React.forwardRef<
       ))}
     </div>
   );
-});
-
-Masonry.displayName = "Masonry";
-export default Masonry;
+}

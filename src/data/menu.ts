@@ -4,29 +4,25 @@ export const menu: Node[] = [
   {
     key: "dashboard",
     label: "Dashboard",
-    icon: "MoveUpRight",
     nodes: [
-      { key: "analytics", label: "Analytics", href: "/analytics" },
-      { key: "links", label: "Links" },
-      { key: "platforms", label: "Platforms", href: "/platforms" },
+      { key: "analytics", label: "Analytics", href: "/dashboard/analytics" },
+      { key: "profile", label: "Profile", href: "/dashboard/profile" },
+      { key: "links", label: "Links", href: "/dashboard/links" },
+      { key: "platforms", label: "Platforms", href: "/dashboard/platforms" },
+      { key: "themes", label: "Themes", href: "/dashboard/themes" },
     ],
   },
   {
     key: "settings",
     label: "Settings",
     nodes: [
-      { key: "profile", label: "My Profile" },
-      { key: "preferences", label: "Account Preferences" },
-      { key: "billing", label: "Billing" },
-      { key: "integrations", label: "Integrations" },
-    ],
-  },
-  {
-    key: "documentation",
-    label: "Documentation",
-    nodes: [
-      { key: "guides", label: "Guides", icon: "MoveUpRight" },
-      { key: "apireference", label: "API Reference", icon: "MoveUpRight" },
+      { key: "account", label: "Account", href: "/dashboard/settings/account" },
+      { key: "billing", label: "Billing", href: "/dashboard/settings/billing" },
+      {
+        key: "preferences",
+        label: "Preferences",
+        href: "/dashboard/settings/preferences",
+      },
     ],
   },
 ];

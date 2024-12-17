@@ -24,7 +24,7 @@ export default function AccountInformation() {
     resolver: zodResolver(FormSchema),
     mode: "all",
     defaultValues: {
-      username: session.data?.user.username ?? "",
+      username: "",
       email: session.data?.user.email ?? "",
     },
   });
@@ -93,15 +93,15 @@ export default function AccountInformation() {
         <div className="mt-4 grid grid-cols-12 gap-6">
           <Collapsible.CollapsibleRoot className="col-start-1 col-end-13 md:col-start-5 md:col-end-13">
             <Collapsible.CollapsibleTrigger className="group p-0 [&[data-state=open]>div>svg]:!-rotate-180">
-              <div className="flex w-full items-center gap-x-2 [&>svg]:text-foreground-light">
-                <p className="text-left text-xs text-foreground-light transition group-hover:text-foreground">
+              <div className="flex w-full items-center gap-x-2">
+                <p className="text-left text-xs transition group-hover:text-foreground">
                   How can I change my email?
                 </p>
                 <Icon icon="ChevronDown" className="size-3.5" />
               </div>
             </Collapsible.CollapsibleTrigger>
-            <Collapsible.CollapsibleContent className="mt-2 rounded-lg bg-surface-200 px-4 py-4">
-              <ol className="ml-4 list-decimal text-xs text-foreground-lighter">
+            <Collapsible.CollapsibleContent className="mt-2 rounded-lg px-4 py-4">
+              <ol className="ml-4 list-decimal text-xs">
                 <li>Create a new account with the new email</li>
                 <li>Invite this email to be an owner of the Org</li>
                 <li>Join the Org</li>

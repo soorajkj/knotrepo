@@ -103,8 +103,7 @@ export default function ProfileInformation() {
         <div className="flex items-center gap-2">
           <Button
             type="reset"
-            variant="default"
-            size="tiny"
+            size="sm"
             form={formId}
             onClick={() => form.reset()}
             disabled={!form.formState.isDirty}
@@ -114,7 +113,7 @@ export default function ProfileInformation() {
           <Button
             type="submit"
             variant="primary"
-            size="tiny"
+            size="sm"
             form={formId}
             disabled={!form.formState.isDirty}
           >

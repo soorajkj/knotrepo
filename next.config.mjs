@@ -12,7 +12,22 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "avatars.githubusercontent.com" },
       { protocol: "https", hostname: "loremflickr.com" },
+      { protocol: "https", hostname: "picsum.photos" },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/dashboard",
+        destination: "/dashboard/analytics",
+        permanent: true,
+      },
+      {
+        source: "/dashboard/settings",
+        destination: "/dashboard/settings/account",
+        permanent: true,
+      },
+    ];
   },
 };
 

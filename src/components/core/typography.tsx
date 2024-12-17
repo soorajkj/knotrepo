@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/classnames";
 
 type TitleStyleProps = VariantProps<typeof TitleStyles>;
 

@@ -6,7 +6,7 @@ const { auth } = NextAuth(authConfig);
 
 const _apis = "/api/auth";
 const _public = ["/"];
-const _auth = ["/auth/login", "/auth/register"];
+const _auth = ["/auth/signin", "/auth/signup", "/auth/register/onboard"];
 
 export default auth(async function middlware(req) {
   const _authenticated = !!req.auth;
@@ -16,13 +16,13 @@ export default auth(async function middlware(req) {
 
   if (_auth.includes(nextUrl.pathname)) {
     if (_authenticated) {
-      return Response.redirect(new URL("/dashboard", nextUrl));
+      return Response.redirect(new URL("/dashboard/analytics", nextUrl));
     }
     return;
   }
 
   if (!_authenticated && !_public.includes(nextUrl.pathname)) {
-    return Response.redirect(new URL("/auth/login", nextUrl));
+    return Response.redirect(new URL("/auth/signin", nextUrl));
   }
 
   return NextResponse.next();

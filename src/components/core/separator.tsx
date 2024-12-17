@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/classnames";
 
 const Separator = React.forwardRef<
   React.ElementRef<typeof SeparatorPrimitive.Root>,
@@ -29,7 +29,7 @@ const Separator = React.forwardRef<
       />
       {children && (
         <React.Fragment>
-          <span className="mx-2 text-xs font-medium text-neutral-200">
+          <span className="mx-2 text-xs font-medium text-surface-400">
             {children}
           </span>
           <SeparatorPrimitive.Root
@@ -47,7 +47,7 @@ const Separator = React.forwardRef<
 
 const SeparatorStyles = cva(
   [
-    "bg-border-strong",
+    "bg-surface-100",
     "pointer-events-none",
     "relative",
     "flex",

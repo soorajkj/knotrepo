@@ -1,101 +1,33 @@
 import * as React from "react";
-import Link from "next/link";
+import { menu } from "@/data/menu";
+import ActiveLink from "@/components/ActiveLink";
 
 export default function Menu() {
   return (
     <nav aria-label="sidebar">
-      <ul className="flex h-full flex-col">
-        <li className="border-b border-default px-6 py-5">
-          <div className="mb-2 flex items-center">
-            <h2 className="w-full text-sm text-foreground-lighter">Projects</h2>
-          </div>
-          <ul className="space-y-1">
-            <li>
-              <Link href="/dashboard" className="w-full">
-                <div className="group flex max-w-full items-center border-default py-1 font-normal outline-none ring-foreground group-hover:border-foreground-muted focus-visible:z-10 focus-visible:ring-1 [&>svg]:text-foreground-lighter">
-                  <div className="flex flex-shrink-0 items-center gap-1.5">
-                    <span className="w-full truncate text-sm font-medium text-foreground-light transition group-hover:text-foreground">
-                      Analytics
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/dashboard" className="w-full">
-                <div className="group flex max-w-full items-center border-default py-1 font-normal outline-none ring-foreground group-hover:border-foreground-muted focus-visible:z-10 focus-visible:ring-1 [&>svg]:text-foreground-lighter">
-                  <div className="flex flex-shrink-0 items-center gap-1.5">
-                    <span className="w-full truncate text-sm font-medium text-foreground-light transition group-hover:text-foreground">
-                      Links
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/dashboard" className="w-full">
-                <div className="group flex max-w-full items-center border-default py-1 font-normal outline-none ring-foreground group-hover:border-foreground-muted focus-visible:z-10 focus-visible:ring-1 [&>svg]:text-foreground-lighter">
-                  <div className="flex flex-shrink-0 items-center gap-1.5">
-                    <span className="w-full truncate text-sm font-medium text-foreground-light transition group-hover:text-foreground">
-                      Platforms
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li className="border-b border-default px-6 py-5">
-          <div className="mb-2 flex items-center">
-            <h2 className="w-full text-sm text-foreground-lighter">Settings</h2>
-          </div>
-          <ul className="space-y-1">
-            <li>
-              <Link href="/dashboard" className="w-full">
-                <div className="group flex max-w-full items-center border-default py-1 font-normal outline-none ring-foreground group-hover:border-foreground-muted focus-visible:z-10 focus-visible:ring-1 [&>svg]:text-foreground-lighter">
-                  <div className="flex flex-shrink-0 items-center gap-1.5">
-                    <span className="w-full truncate text-sm font-medium text-foreground-light transition group-hover:text-foreground">
-                      Account
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/dashboard" className="w-full">
-                <div className="group flex max-w-full items-center border-default py-1 font-normal outline-none ring-foreground group-hover:border-foreground-muted focus-visible:z-10 focus-visible:ring-1 [&>svg]:text-foreground-lighter">
-                  <div className="flex flex-shrink-0 items-center gap-1.5">
-                    <span className="w-full truncate text-sm font-medium text-foreground-light transition group-hover:text-foreground">
-                      Preferences
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/dashboard" className="w-full">
-                <div className="group flex max-w-full items-center border-default py-1 font-normal outline-none ring-foreground group-hover:border-foreground-muted focus-visible:z-10 focus-visible:ring-1 [&>svg]:text-foreground-lighter">
-                  <div className="flex flex-shrink-0 items-center gap-1.5">
-                    <span className="w-full truncate text-sm font-medium text-foreground-light transition group-hover:text-foreground">
-                      Plan & Billings
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="/dashboard" className="w-full">
-                <div className="group flex max-w-full items-center border-default py-1 font-normal outline-none ring-foreground group-hover:border-foreground-muted focus-visible:z-10 focus-visible:ring-1 [&>svg]:text-foreground-lighter">
-                  <div className="flex flex-shrink-0 items-center gap-1.5">
-                    <span className="w-full truncate text-sm font-medium text-foreground-light transition group-hover:text-foreground">
-                      Integrations
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </li>
-          </ul>
-        </li>
+      <ul className="flex h-full flex-col gap-4 px-6 py-6">
+        {menu.map((_, i) => (
+          <li key={i} className="flex flex-col gap-2">
+            <div className="flex items-center gap-2">
+              <h4 className="w-full flex-1 truncate text-sm font-medium">
+                {_.label}
+              </h4>
+            </div>
+            <ul className="flex flex-col text-sm">
+              {_.nodes?.map((node, node_i) => (
+                <li key={node_i}>
+                  <ActiveLink
+                    href={node.href}
+                    className="flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 dark:text-white/60"
+                    active="text-wg-purple bg-surface"
+                  >
+                    <span>{node.label}</span>
+                  </ActiveLink>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
       </ul>
     </nav>
   );

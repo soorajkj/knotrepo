@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/classnames";
 import Icon, { icons } from "@/components/core/icon";
 
 type AlertVairants = NonNullable<
@@ -55,11 +55,7 @@ const AlertDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("text-sm font-normal text-foreground-light", className)}
-    {...props}
-  />
+  <div ref={ref} className={cn("text-sm font-normal", className)} {...props} />
 ));
 
 const AlertStyles = cva(

@@ -15,7 +15,7 @@ export default async function Layout(props: LayoutProps) {
 
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body className="h-full min-h-screen w-full bg-default font-family-manrope text-base font-normal leading-normal text-default antialiased scrollbar">
+      <body className="h-full min-h-screen w-full bg-background font-family-manrope text-base font-normal leading-normal text-foreground antialiased scrollbar selection:bg-primary-100">
         <SessionProvider session={session}>
           <ThemeProvider enableSystem defaultTheme="system" attribute="class">
             {props.children}

@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/classnames";
 
 const Label = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
@@ -30,6 +30,8 @@ export default Label;
 const LabelStyles = cva([
   "inline-block",
   "text-sm",
+  "leading-none",
+  "dark:text-surface-900",
   "leading-none",
   "text-foreground-light",
   "peer-disabled:cursor-not-allowed",

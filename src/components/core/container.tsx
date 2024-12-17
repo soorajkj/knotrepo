@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/classnames";
 
 interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -8,10 +8,7 @@ export default function Container(props: ContainerProps) {
 
   return (
     <div
-      className={cn(
-        "container relative mx-auto w-full max-w-screen-2xl px-6 lg:px-16 xl:px-20",
-        className
-      )}
+      className={cn("container mx-auto w-full max-w-screen-xl px-4", className)}
       {...rest}
     >
       {children}

@@ -1,47 +1,55 @@
 "use client";
 
 import * as React from "react";
+import { signupAction } from "@/actions/auth/signup";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { LoginSchema } from "@/schemas/login";
+import { SignupSchema } from "@/schemas/signup";
 import Button from "@/components/core/button";
 import Form from "@/components/core/form";
 import Input from "@/components/core/input";
 
-type LoginFormFields = z.infer<typeof LoginSchema>;
+export type SignupFormFields = z.infer<typeof SignupSchema>;
 
-export default function LoginForm() {
-  const form = useForm<LoginFormFields>({
-    resolver: zodResolver(LoginSchema),
-    mode: "all",
-    defaultValues: { email: "", password: "" },
+export default function SignupForm() {
+  const form = useForm<SignupFormFields>({
+    resolver: zodResolver(SignupSchema),
+    mode: "onChange",
+    defaultValues: {
+      email: "",
+      password: "Password123@",
+    },
   });
 
-  const handleFormSubmit = (_formData: LoginFormFields) => {};
+  const handleFormSubmit = async (formData: SignupFormFields) => {
+    signupAction(formData).then((res) => {
+      if (res.success) form.reset();
+    });
+  };
 
   return (
     <Form.FormRoot {...form}>
       <form
-        className="space-y-6"
+        className="flex flex-col gap-6"
         onSubmit={form.handleSubmit(handleFormSubmit)}
+        autoComplete="off"
       >
         <Form.FormField
           control={form.control}
           name="email"
           render={({ field }) => (
-            <Form.FormItem className="flex flex-col-reverse">
-              <Form.FormMessage className="order-3" />
+            <Form.FormItem className="flex flex-col">
+              <Form.FormLabel>Email</Form.FormLabel>
               <Form.FormControl>
                 <Input
-                  type="text"
-                  placeholder="yourmail@gmail.com"
+                  type="email"
+                  placeholder="Enter your email"
                   autoComplete="off"
-                  disabled={true}
                   {...field}
                 />
               </Form.FormControl>
-              <Form.FormLabel>Email</Form.FormLabel>
+              <Form.FormMessage />
             </Form.FormItem>
           )}
         />
@@ -49,29 +57,23 @@ export default function LoginForm() {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <Form.FormItem className="flex flex-col-reverse">
-              <Form.FormMessage className="order-3" />
+            <Form.FormItem className="flex flex-col">
+              <Form.FormLabel>Password</Form.FormLabel>
               <Form.FormControl>
                 <Input
                   type="password"
-                  placeholder="●●●●●●●●"
+                  placeholder="Create a password"
                   autoComplete="off"
-                  disabled={true}
                   {...field}
                 />
               </Form.FormControl>
-              <Form.FormLabel>Password</Form.FormLabel>
+              <Form.FormMessage />
             </Form.FormItem>
           )}
         />
-        <Button
-          type="submit"
-          variant="primary"
-          disabled={!form.formState.isValid}
-          block={true}
-          className="!mt-12"
-        >
-          <span>Sign in</span>
+
+        <Button type="submit" disabled={!form.formState.isValid} block={true}>
+          Get started
         </Button>
       </form>
     </Form.FormRoot>

@@ -2,7 +2,7 @@ import * as React from "react";
 import Link from "next/link";
 import { cva, VariantProps } from "class-variance-authority";
 import { Session } from "next-auth";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/classnames";
 import Button from "@/components/core/button";
 import Container from "@/components/core/container";
 
@@ -45,7 +45,7 @@ export default function MobileMenu(props: MobileMenuProps) {
               </Button>
             ) : (
               <React.Fragment>
-                <Button variant="outline" asChild block>
+                <Button asChild block>
                   <Link href="/login">Login</Link>
                 </Button>
                 <Button variant="primary" asChild block>
@@ -72,7 +72,7 @@ const MobileMenuStyles = cva(
     "ease-in-out",
     "duration-500",
     "origin-top",
-    "dark:bg-neutral-900",
+    "dark:bg-slate-900",
   ],
   {
     variants: {

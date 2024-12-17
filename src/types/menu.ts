@@ -1,10 +1,13 @@
-import { IconTypes } from "@/components/core/icon";
-
-export type Node = {
+interface BaseNode {
   key: string;
   label: string;
-  icon?: IconTypes;
+}
+
+interface NodeLevel extends BaseNode {
+  href: string;
   nodes?: Node[];
-  href?: string;
-  group?: boolean;
-};
+}
+
+export interface Node extends BaseNode {
+  nodes?: NodeLevel[];
+}

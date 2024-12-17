@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { Circle } from "lucide-react";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/classnames";
 import Label from "@/components/core/label";
 
 const RadioGroupRoot = React.forwardRef<
@@ -27,7 +27,7 @@ const RadioGroupItem = React.forwardRef<
     <RadioGroupPrimitive.Item
       ref={ref}
       className={cn(
-        "border-primary text-primary focus-visible:ring-ring aspect-square h-4 w-4 rounded-full border ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        "focus-visible:ring-ring aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       {...props}
@@ -49,7 +49,7 @@ const RadioGroupItemMod = React.forwardRef<
     <RadioGroupPrimitive.Item
       ref={ref}
       className={cn(
-        "data-[state=checked]:border-primary group flex flex-col gap-2 rounded-md border border-strong bg-surface-200 p-2 shadow-sm transition-colors data-[state=checked]:border-foreground data-[state=checked]:bg-selection data-[state=checked]:ring-1 data-[state=checked]:ring-border hover:border-stronger hover:bg-surface-300",
+        "border-strong data-[state=checked]:bg-selection data-[state=checked]:ring-border hover:border-stronger group flex flex-col gap-2 rounded-md border bg-surface-200 p-2 shadow-sm transition-colors data-[state=checked]:border-foreground data-[state=checked]:border-primary data-[state=checked]:ring-1 hover:bg-surface-300",
         className
       )}
       {...props}
@@ -57,8 +57,8 @@ const RadioGroupItemMod = React.forwardRef<
       {children}
       <div className="flex items-center gap-2">
         <div className="relative h-3 w-3 min-w-3">
-          <RadioGroupPrimitive.Indicator className="absolute left-px top-px size-2.5 rounded-full border border-background-surface-300 data-[state=checked]:border-background-surface-300 data-[state=checked]:bg-foreground data-[state=checked]:ring-foreground" />
-          <div className="absolute h-3 w-3 rounded-full border border-stronger transition-colors group-hover:border-foreground-light group-data-[state=checked]:border-foreground" />
+          <RadioGroupPrimitive.Indicator className="border-background-surface-300 data-[state=checked]:border-background-surface-300 absolute left-px top-px size-2.5 rounded-full border data-[state=checked]:bg-foreground data-[state=checked]:ring-foreground" />
+          <div className="border-stronger group-hover:border-foreground-light absolute h-3 w-3 rounded-full border transition-colors group-data-[state=checked]:border-foreground" />
         </div>
         <Label htmlFor={props.value} className="text-xs">
           {label}

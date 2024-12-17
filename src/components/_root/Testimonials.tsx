@@ -1,60 +1,28 @@
-"use client";
-
 import * as React from "react";
-import tweets from "@/data/tweets.json";
-import _ from "lodash";
-import { Autoplay } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 import Container from "@/components/core/container";
 import Masonry from "@/components/core/masonry";
 import Testimonial from "@/components/root/Testimonial";
-import "swiper/css";
 
 export default function Testimonials() {
   return (
-    <section>
+    <section className="relative overflow-hidden">
       <Container>
         <div className="py-12 sm:py-24">
           <div className="mx-auto mb-12 max-w-xl text-center">
-            <h2 className="mb-4 text-3xl font-semibold text-neutral-900 dark:text-neutral-50">
+            <h2 className="mb-4 text-4xl font-semibold text-gray-900">
               Don&apos;t just take our word for it
             </h2>
-            <p className="text-base font-medium text-foreground-light">
+            <p className="text-lg">
               Discover what our community has to say about their Supabase
               experience.
             </p>
           </div>
-          <div className="relative overflow-hidden">
-            <Swiper
-              slidesPerView={"auto"}
-              spaceBetween={16}
-              loop={true}
-              speed={30000}
-              autoplay={{
-                delay: 0,
-                disableOnInteraction: false,
-              }}
-              modules={[Autoplay]}
-              onSwiper={(swiper) => {
-                swiper.wrapperEl.style.transitionTimingFunction = "linear";
-              }}
-            >
-              {_.chunk(tweets, 8).map((group, i) => (
-                <SwiperSlide key={i}>
-                  <Masonry columns={{ 640: 1, 768: 2, 1280: 4 }}>
-                    {group.map((tweet) => (
-                      <Testimonial
-                        key={tweet.url}
-                        url={tweet.url}
-                        handle={`@${tweet.handle}`}
-                        quote={tweet.text}
-                        img_url={tweet.img_url}
-                      />
-                    ))}
-                  </Masonry>
-                </SwiperSlide>
+          <div className="relative overflow-hidden after:pointer-events-none after:absolute after:inset-0 after:bg-gradient-to-b after:from-transparent after:via-transparent after:to-white">
+            <Masonry count={4}>
+              {Array.from({ length: 12 }).map((_, i) => (
+                <Testimonial key={i} />
               ))}
-            </Swiper>
+            </Masonry>
           </div>
         </div>
       </Container>
