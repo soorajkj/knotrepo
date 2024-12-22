@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import NextAuth, { type DefaultSession } from "next-auth";
-import { JWT } from "next-auth/jwt";
+import { DefaultJWT, JWT } from "next-auth/jwt";
 
 declare module "next-auth" {
   interface Session {
@@ -12,8 +12,8 @@ declare module "next-auth" {
   }
 }
 
-declare module "@auth/core/jwt" {
-  interface JWT {
+declare module "next-auth/jwt" {
+  interface JWT extends DefaultJWT {
     username: string;
   }
 }

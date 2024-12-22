@@ -3,7 +3,7 @@
 import * as React from "react";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/classnames";
 
 interface AvatarRootProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>,
@@ -13,12 +13,12 @@ const AvatarRoot = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
   AvatarRootProps
 >((props, ref) => {
-  const { className, ...rest } = props;
+  const { size = "md", className, ...rest } = props;
 
   return (
     <AvatarPrimitive.Root
       ref={ref}
-      className={cn(AvatarRootStyles({ className }))}
+      className={cn(AvatarRootStyles({ size, className }))}
       {...rest}
     />
   );
@@ -45,12 +45,12 @@ const AvatarImage = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> &
     VariantProps<typeof AvatarImageStyles>
 >((props, ref) => {
-  const { className, src, ...rest } = props;
+  const { src, className, ...rest } = props;
 
   return (
     <AvatarPrimitive.Image
       ref={ref}
-      src={src}
+      src={src || ""}
       className={cn(AvatarImageStyles({ className }))}
       {...rest}
     />
@@ -60,15 +60,26 @@ const AvatarImage = React.forwardRef<
 const AvatarRootStyles = cva(
   [
     "relative",
-    "flex",
-    "h-9",
-    "w-9",
+    "inline-flex",
+    "aspect-square",
     "shrink-0",
+    "items-center",
+    "justify-center",
     "overflow-hidden",
     "rounded-full",
   ],
   {
-    variants: {},
+    variants: {
+      size: {
+        xxs: ["h-4", "min-w-4", "text-xxs"],
+        xs: ["h-6", "min-w-6", "text-xs"],
+        sm: ["h-8", "min-w-8", "text-sm"],
+        md: ["h-10", "min-w-10", "text-base"],
+        lg: ["h-12", "min-w-12", "text-lg"],
+        xl: ["h-14", "min-w-14", "text-xl"],
+        xxl: ["h-16", "min-w-16", "text-2xl"],
+      },
+    },
   }
 );
 
@@ -79,13 +90,10 @@ const AvatarFallbackStyles = cva([
   "items-center",
   "justify-center",
   "border",
-  "border-misty-300",
-  "bg-misty-200",
-  "text-misty-600",
+  "border-primary",
+  "bg-primary",
+  "text-white",
   "rounded-full",
-  "dark:border-misty-800",
-  "dark:bg-misty-800",
-  "dark:text-misty-500",
 ]);
 
 const AvatarImageStyles = cva([

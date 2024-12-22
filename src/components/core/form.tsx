@@ -2,7 +2,7 @@ import * as React from "react";
 import type * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
 import * as ReactHookForm from "react-hook-form";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/classnames";
 import Label from "@/components/core/label";
 
 const FormRoot = ReactHookForm.FormProvider;
@@ -75,7 +75,7 @@ const FormItem = React.forwardRef<
 
   return (
     <FormItemContext.Provider value={{ id }}>
-      <div ref={ref} className={cn(["space-y-2"], className)} {...rest}></div>
+      <div ref={ref} className={cn(["gap-2"], className)} {...rest}></div>
     </FormItemContext.Provider>
   );
 });
@@ -104,8 +104,6 @@ const FormControl = React.forwardRef<
   const { error, formItemId, formDescriptionId, formMessageId } =
     useFormField();
 
-  const _props = { ...rest, invalid: !!error };
-
   return (
     <Slot
       ref={ref}
@@ -117,7 +115,7 @@ const FormControl = React.forwardRef<
       }
       aria-invalid={!!error}
       className={cn("relative", className)}
-      {..._props}
+      {...rest}
     />
   );
 });
@@ -159,7 +157,7 @@ const FormMessage = React.forwardRef<
     <p
       ref={ref}
       id={formMessageId}
-      className={cn(["text-sm", "text-red-600"], className)}
+      className={cn(["text-xs", "text-destructive"], className)}
       {...rest}
     >
       {body}
@@ -187,7 +185,7 @@ const UncontrolledFormMessage = React.forwardRef<
     <p
       ref={ref}
       id={formMessageId}
-      className={cn(["text-xm", "text-red-700"], className)}
+      className={cn(["text-xs", "text-red-700"], className)}
       {...rest}
     >
       {body}

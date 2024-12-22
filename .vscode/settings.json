@@ -4,7 +4,7 @@
   "editor.formatOnPaste": false,
   "editor.colorDecorators": false,
   "editor.wordWrap": "wordWrapColumn",
-  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "scss.validate": false,
   "tailwindCSS.experimental.classRegex": [
@@ -12,5 +12,8 @@
   ],
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
-  }
+  },
+  "git.decorations.enabled": false,
+  "scm.diffDecorationsGutterVisibility": "hover",
+  "svg.preview.background": "editor"
 }
