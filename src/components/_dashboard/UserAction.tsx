@@ -13,7 +13,9 @@ export default function UserAction() {
   const handleSignOut = async () => {
     await authClient.signOut({
       fetchOptions: {
-        onSuccess: () => router.push("/"),
+        onSuccess: () => {
+          router.push("/auth/signin");
+        },
       },
     });
   };

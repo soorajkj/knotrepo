@@ -52,7 +52,6 @@ const ButtonStyles = cva(
   [
     "group",
     "inline-flex",
-    "shrink-0",
     "select-none",
     "items-center",
     "justify-center",

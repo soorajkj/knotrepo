@@ -1,7 +1,8 @@
+import "@/schemas/env";
 import * as React from "react";
 import type { Metadata } from "next";
-import Toaster from "@/components/core/toaster";
-import ThemeProvider from "@/components/ThemeProvider";
+import { Toaster } from "@/components/core/toast";
+import ThemeProvider from "@/components/theme-provider";
 import "@/styles/app.scss";
 
 export const metadata: Metadata = {};

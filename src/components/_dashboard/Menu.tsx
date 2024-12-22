@@ -1,6 +1,6 @@
 import * as React from "react";
 import { menu } from "@/data/menu";
-import ActiveLink from "@/components/ActiveLink";
+import ActiveLink from "@/components/active-link";
 
 export default function Menu() {
   return (

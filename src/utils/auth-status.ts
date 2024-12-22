@@ -1,0 +1,8 @@
+// 200: "Success! Your operation was completed successfully.",
+// 201: "Your account has been created successfully. Please check your email to verify your account.",
+// 400: "Bad Request. Please check your input and try again.",
+// 401: "Unauthorized access. Invalid email or password",
+// 403: "Forbidden. You do not have permission to perform this action.",
+// 404: "Resource not found. Please check the URL and try again.",
+// 409: "Conflict. This email address is already registered. Please log in or verify your email.",
+// 500: "Internal Server Error. Please try again later.",

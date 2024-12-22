@@ -5,7 +5,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { SigninSchema } from "@/schemas/signin";
+import { signinSchema } from "@/schemas/signin";
 import { authClient } from "@/lib/auth-client";
 import Button from "@/components/core/button";
 import Checkbox from "@/components/core/checkbox";
@@ -13,32 +13,35 @@ import Form from "@/components/core/form";
 import Input from "@/components/core/input";
 import Typography from "@/components/core/typography";
 
-export type SigninFormFields = z.infer<typeof SigninSchema>;
+export type SigninFormFields = z.infer<typeof signinSchema>;
 
 export default function SigninForm() {
+  const [loading, setLoading] = React.useState(false);
   const form = useForm<SigninFormFields>({
-    resolver: zodResolver(SigninSchema),
+    resolver: zodResolver(signinSchema),
     mode: "all",
     defaultValues: {
-      email: "febin@gmail.com",
-      password: "Password123@",
-      rememberMe: true,
+      email: "",
+      password: "",
+      rememberMe: false,
     },
   });
 
   const handleFormSubmit = async (formData: SigninFormFields) => {
     const { email, password, rememberMe } = formData;
-    const _response = await authClient.signIn.email(
+    await authClient.signIn.email(
+      { email, password, rememberMe, callbackURL: "/dashboard" },
       {
-        rememberMe,
-        email,
-        password,
-        callbackURL: "/dashboard",
-      },
-      {
-        onRequest: () => {},
-        onSuccess: () => {},
-        onError: () => {},
+        onRequest: () => {
+          setLoading(true);
+        },
+        onSuccess: () => {
+          setLoading(false);
+          form.reset();
+        },
+        onError: () => {
+          setLoading(false);
+        },
       }
     );
   };
@@ -46,7 +49,7 @@ export default function SigninForm() {
   return (
     <Form.FormRoot {...form}>
       <form
-        className="flex flex-col gap-6"
+        className="flex flex-col gap-4"
         onSubmit={form.handleSubmit(handleFormSubmit)}
         autoComplete="off"
       >
@@ -112,8 +115,8 @@ export default function SigninForm() {
             </Link>
           </Typography.Text>
         </div>
-        <Button type="submit" disabled={!form.formState.isValid} block={true}>
-          <span>Sign in</span>
+        <Button type="submit" disabled={loading} block={true} className="mt-4">
+          Sign in
         </Button>
       </form>
     </Form.FormRoot>

@@ -8,14 +8,21 @@ interface OAuthFormProps {
   label: "Sign up" | "Sign in";
 }
 
-const click = async (provider: "google" | "github") => {
-  await authClient.signIn.social({
-    provider,
-    newUserCallbackURL: "/auth/onboard",
-  });
-};
-
 export default function OAuthForm(props: OAuthFormProps) {
+  const click = async (provider: "google" | "github") => {
+    await authClient.signIn.social(
+      {
+        provider,
+        callbackURL: "/dashboard",
+      },
+      {
+        onRequest: () => {},
+        onSuccess: () => {},
+        onError: () => {},
+      }
+    );
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <Button variant="outline" block={true} onClick={() => click("google")}>

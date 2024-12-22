@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -17,7 +16,6 @@ const OnboardSchema = z.object({
 export type OnboardFormFields = z.infer<typeof OnboardSchema>;
 
 export default function OnboardForm() {
-  const router = useRouter();
   const form = useForm<OnboardFormFields>({
     resolver: zodResolver(OnboardSchema),
     mode: "all",
@@ -32,7 +30,6 @@ export default function OnboardForm() {
         onRequest: () => {},
         onSuccess: () => {
           form.reset();
-          router.push("/dashboard");
         },
         onError: () => {},
       }
