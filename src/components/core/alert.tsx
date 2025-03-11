@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/classnames";
-import Icon, { icons } from "@/components/core/icon";
+import { cn } from "~utils/classnames";
+import Icon, { icons } from "~components/core/icon";
 
 type AlertVairants = NonNullable<
   Pick<VariantProps<typeof AlertStyles>, "variant">["variant"]

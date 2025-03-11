@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/classnames";
+import { tv, VariantProps } from "tailwind-variants";
+import { cn } from "~utils/classnames";
 
 const Separator = React.forwardRef<
   React.ElementRef<typeof SeparatorPrimitive.Root>,
@@ -29,7 +29,7 @@ const Separator = React.forwardRef<
       />
       {children && (
         <React.Fragment>
-          <span className="mx-2 text-xs font-medium text-surface-400">
+          <span className="mx-2 text-sm leading-none text-zinc-400 dark:text-zinc-600">
             {children}
           </span>
           <SeparatorPrimitive.Root
@@ -45,26 +45,24 @@ const Separator = React.forwardRef<
   );
 });
 
-const SeparatorStyles = cva(
-  [
-    "bg-surface-100",
+const SeparatorStyles = tv({
+  base: [
     "pointer-events-none",
     "relative",
     "flex",
     "flex-1",
     "shrink-0",
     "items-center",
-    "leading-none",
+    "bg-zinc-950/10",
+    "dark:bg-white/10",
   ],
-  {
-    variants: {
-      orientation: {
-        horizontal: ["h-px w-full"],
-        vertical: ["h-full w-px"],
-      },
+  variants: {
+    orientation: {
+      horizontal: ["h-px", "w-full"],
+      vertical: ["h-full", "w-px"],
     },
-  }
-);
+  },
+});
 
 Separator.displayName = SeparatorPrimitive.Root.displayName;
 

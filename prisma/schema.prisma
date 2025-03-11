@@ -8,20 +8,20 @@ datasource db {
 }
 
 model User {
-  id            String    @id
-  name          String?
-  email         String
-  emailVerified Boolean
-  image         String?
-  country       String?
-  phone         String?
-  biography     String?
-  createdAt     DateTime
-  updatedAt     DateTime
-  sessions      Session[]
-  accounts      Account[]
+  id              String            @id
+  name            String
+  email           String
+  emailVerified   Boolean
+  image           String?
+  createdAt       DateTime
+  updatedAt       DateTime
+  username        String?
+  sessions        Session[]
+  accounts        Account[]
+  Profile         Profile[]
+  SocialMediaLink SocialMediaLink[]
 
-  username String?
+  displayUsername String?
 
   @@unique([email])
   @@unique([username])
@@ -71,4 +71,45 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model Profile {
+  id        String   @id
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  biography String?
+  image     String?
+  location  String?
+  email     String?
+  phone     String?
+  website   String?
+  createdAt DateTime
+  updatedAt DateTime
+
+  @@map("profile")
+}
+
+model SocialPlatform {
+  id              String            @id
+  name            String            @unique
+  icon            String?
+  url             String?
+  SocialMediaLink SocialMediaLink[]
+
+  @@map("social_platform")
+}
+
+model SocialMediaLink {
+  id         String         @id
+  userId     String
+  user       User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  platformId String
+  platform   SocialPlatform @relation(fields: [platformId], references: [id])
+  url        String
+  visibility Boolean?       @default(true)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  @@unique([userId, platformId])
+  @@map("social_media_link")
 }

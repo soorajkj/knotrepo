@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
-import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/classnames";
+import { tv, VariantProps } from "tailwind-variants";
+import { cn } from "~utils/classnames";
 
 const Label = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
@@ -27,13 +27,8 @@ Label.displayName = LabelPrimitive.Root.displayName;
 
 export default Label;
 
-const LabelStyles = cva([
-  "inline-block",
-  "text-sm",
-  "leading-none",
-  "dark:text-surface-900",
-  "leading-none",
-  "text-foreground-light",
-  "peer-disabled:cursor-not-allowed",
-  "peer-disabled:opacity-70",
-]);
+const LabelStyles = tv({
+  base: [
+    "inline-block text-sm leading-none text-zinc-950 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-white",
+  ],
+});

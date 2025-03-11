@@ -9,15 +9,15 @@
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
-    "^@/public/(.*)$",
-    "^@/types/(.*)$",
-    "^@/schemas/(.*)$",
-    "^@/lib/(.*)$",
-    "^@/utils/(.*)$",
-    "^@/hooks/(.*)$",
-    "^@/components/core/(.*)$",
-    "^@/components/(.*)$",
-    "^@/styles/(.*)$"
+    "^~public/(.*)$",
+    "^~types/(.*)$",
+    "^~schemas/(.*)$",
+    "^~lib/(.*)$",
+    "^~utils/(.*)$",
+    "^~hooks/(.*)$",
+    "^~components/core/(.*)$",
+    "^~components/(.*)$",
+    "^~styles/(.*)$"
   ],
   "importOrderSeparation": false,
   "importOrderSortSpecifiers": true,
@@ -28,5 +28,7 @@
   "plugins": [
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss"
-  ]
+  ],
+  "tailwindFunctions": ["tv"],
+  "tailwindAttributes": ["^aria-"]
 }

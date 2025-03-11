@@ -1,5 +1,10 @@
-import React from "react";
+import * as React from "react";
+import TempForm from "~components/dashboard/TempForm";
 
-export default async function Page() {
-  return <div>Page</div>;
+export default function Page() {
+  return (
+    <React.Fragment>
+      <TempForm />
+    </React.Fragment>
+  );
 }

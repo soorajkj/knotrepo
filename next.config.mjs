@@ -27,11 +27,6 @@ const nextConfig = {
         destination: "/dashboard/analytics",
         permanent: true,
       },
-      {
-        source: "/dashboard/settings",
-        destination: "/dashboard/settings/account",
-        permanent: true,
-      },
     ];
   },
 };

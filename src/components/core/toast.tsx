@@ -5,8 +5,8 @@ import * as ToastPrimitives from "@radix-ui/react-toast";
 import { cva, type VariantProps } from "class-variance-authority";
 import { useTheme } from "next-themes";
 import { Toaster as Sonner } from "sonner";
-import { cn } from "@/utils/classnames";
-import Icon from "@/components/core/icon";
+import { cn } from "~utils/classnames";
+import Icon from "~components/core/icon";
 
 const ToastProvider = ToastPrimitives.Provider;
 

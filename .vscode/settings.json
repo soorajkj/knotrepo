@@ -9,7 +9,7 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "scss.validate": false,
   "tailwindCSS.experimental.classRegex": [
-    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+    ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"

@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
-import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/classnames";
+import { tv, VariantProps } from "tailwind-variants";
+import { cn } from "~utils/classnames";
 
 interface AvatarRootProps
   extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>,
@@ -13,14 +13,16 @@ const AvatarRoot = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
   AvatarRootProps
 >((props, ref) => {
-  const { size = "md", className, ...rest } = props;
+  const { children, size = "md", className, ...rest } = props;
 
   return (
     <AvatarPrimitive.Root
       ref={ref}
       className={cn(AvatarRootStyles({ size, className }))}
       {...rest}
-    />
+    >
+      {children}
+    </AvatarPrimitive.Root>
   );
 });
 
@@ -50,59 +52,37 @@ const AvatarImage = React.forwardRef<
   return (
     <AvatarPrimitive.Image
       ref={ref}
-      src={src || ""}
+      src={src}
       className={cn(AvatarImageStyles({ className }))}
       {...rest}
     />
   );
 });
 
-const AvatarRootStyles = cva(
-  [
-    "relative",
-    "inline-flex",
-    "aspect-square",
-    "shrink-0",
-    "items-center",
-    "justify-center",
-    "overflow-hidden",
-    "rounded-full",
+const AvatarRootStyles = tv({
+  base: [
+    "relative inline-flex aspect-square shrink-0 items-center justify-center overflow-hidden rounded-full dark:bg-zinc-700",
   ],
-  {
-    variants: {
-      size: {
-        xxs: ["h-4", "min-w-4", "text-xxs"],
-        xs: ["h-6", "min-w-6", "text-xs"],
-        sm: ["h-8", "min-w-8", "text-sm"],
-        md: ["h-10", "min-w-10", "text-base"],
-        lg: ["h-12", "min-w-12", "text-lg"],
-        xl: ["h-14", "min-w-14", "text-xl"],
-        xxl: ["h-16", "min-w-16", "text-2xl"],
-      },
+  variants: {
+    size: {
+      xxs: ["h-4", "min-w-4", "text-xxs"],
+      xs: ["h-6", "min-w-6", "text-xs"],
+      sm: ["h-8", "min-w-8", "text-sm"],
+      md: ["h-10", "min-w-10", "text-base"],
+      lg: ["h-12", "min-w-12", "text-lg"],
+      xl: ["h-14", "min-w-14", "text-xl"],
+      xxl: ["h-16", "min-w-16", "text-2xl"],
     },
-  }
-);
+  },
+});
 
-const AvatarFallbackStyles = cva([
-  "flex",
-  "h-full",
-  "w-full",
-  "items-center",
-  "justify-center",
-  "border",
-  "border-primary",
-  "bg-primary",
-  "text-white",
-  "rounded-full",
-]);
+const AvatarFallbackStyles = tv({
+  base: ["flex", "h-full", "w-full", "items-center", "justify-center"],
+});
 
-const AvatarImageStyles = cva([
-  "static",
-  "block",
-  "aspect-square",
-  "h-full",
-  "w-full",
-]);
+const AvatarImageStyles = tv({
+  base: ["static", "block", "aspect-square", "h-full", "w-full"],
+});
 
 AvatarRoot.displayName = AvatarPrimitive.Root.displayName;
 AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;

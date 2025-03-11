@@ -1,6 +1,6 @@
 import * as React from "react";
 import _ from "lodash";
-import { cn } from "@/utils/classnames";
+import { cn } from "~utils/classnames";
 
 interface MesonryProps extends React.HTMLAttributes<HTMLDivElement> {
   count: number;
@@ -24,7 +24,7 @@ export default function Masonry(props: MesonryProps) {
       style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
     >
       {data.map((column, index) => (
-        <div key={index} className="flex flex-1 flex-col gap-6">
+        <div key={index} className="flex flex-col gap-6">
           {column.map((child, childIndex) => (
             <React.Fragment key={childIndex}>{child}</React.Fragment>
           ))}

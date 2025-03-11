@@ -1,49 +1,29 @@
 import * as React from "react";
-import { cva, VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/classnames";
+import { tv, VariantProps } from "tailwind-variants";
+import { cn } from "~utils/classnames";
 
 export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement>,
     VariantProps<typeof TextareaStyles> {}
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ disabled, className, ...props }, ref) => {
+  (props, ref) => {
+    const { className, ...rest } = props;
     return (
       <textarea
         ref={ref}
         className={cn(TextareaStyles({ className }))}
-        disabled={disabled}
-        {...props}
+        {...rest}
       />
     );
   }
 );
 
-const TextareaStyles = cva([
-  "flex",
-  "min-h-32",
-  "resize-none",
-  "rounded-lg",
-  "border",
-  "bg-background",
-  "w-full",
-  "px-4",
-  "py-2",
-  "text-sm",
-  "leading-6",
-  "shadow-wg-xs",
-  "transition-colors",
-  "duration-100",
-  "placeholder:text-surface-500",
-  "outline-primary",
-  "focus:outline",
-  "focus:outline-2",
-  "focus:-outline-offset-1",
-  "aria-[invalid=true]:bg-destructive-200",
-  "aria-[invalid=true]:border-destructive-400",
-  "aria-[invalid=true]:focus:border-destructive",
-  "aria-[invalid=true]:focus-visible:border-destructive",
-]);
+const TextareaStyles = tv({
+  base: [
+    "peer flex min-h-20 w-full grow resize-none rounded-lg border border-zinc-950/10 bg-transparent px-3 py-2 text-sm leading-6 text-zinc-950 shadow-sm transition-colors duration-100 hover:border-zinc-950/20 focus:outline-none dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:border-white/20",
+  ],
+});
 
 Textarea.displayName = "Textarea";
 
