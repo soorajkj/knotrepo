@@ -1,30 +1,52 @@
+"use client";
+
 import * as React from "react";
 import { tv, VariantProps } from "tailwind-variants";
 import { cn } from "~utils/classnames";
+import ControlGroup from "~components/core/control-group";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof InputStyles> {}
+    VariantProps<typeof InputStyles> {
+  leftAddon?: React.ReactElement;
+  rightAdddon?: React.ReactElement;
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { type, className, ...rest } = props;
+  const { type, className, leftAddon, rightAdddon, ...rest } = props;
 
   return (
-    <input
-      ref={ref}
-      type={type}
-      className={cn(InputStyles({ className }))}
-      {...rest}
-    ></input>
+    <ControlGroup.ControlGroupRoot
+      className={cn(InputStyles().root({ className }))}
+    >
+      <ControlGroup.ControlGroupItem>{leftAddon}</ControlGroup.ControlGroupItem>
+      <ControlGroup.ControlGroupItem>
+        <input
+          ref={ref}
+          type={type}
+          className={cn(InputStyles({ className }).input())}
+          {...rest}
+        />
+      </ControlGroup.ControlGroupItem>
+      <ControlGroup.ControlGroupItem>
+        {rightAdddon}
+      </ControlGroup.ControlGroupItem>
+    </ControlGroup.ControlGroupRoot>
   );
 });
 
-const InputStyles = tv({
-  base: [
-    "peer flex h-10 w-full grow rounded-lg border border-zinc-950/10 bg-transparent px-3 py-2 text-sm leading-6 text-zinc-950 shadow-sm transition-colors duration-100 hover:border-zinc-950/20 focus:outline-none dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:border-white/20",
-  ],
-});
+Input.displayName = "InputComponent";
 
-Input.displayName = "Input";
+const InputStyles = tv({
+  base: [""],
+  slots: {
+    root: [
+      "w-full items-center overflow-hidden rounded-lg border border-neutral-700 bg-neutral-800/80 has-disabled:opacity-50 has-aria-invalid:border-red-500",
+    ],
+    input: [
+      "peer relative h-10 w-full bg-transparent px-3 py-2 text-sm font-normal leading-none text-neutral-200 outline-none transition placeholder:text-neutral-600",
+    ],
+  },
+});
 
 export default Input;

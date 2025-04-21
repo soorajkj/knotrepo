@@ -8,3 +8,5 @@ export const signinSchema = z.object({
   password: z.string().min(1, { message: "Password is required" }),
   rememberMe: z.boolean().optional(),
 });
+
+export type SigninSchemaType = z.infer<typeof signinSchema>;

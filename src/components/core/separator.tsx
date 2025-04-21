@@ -29,7 +29,7 @@ const Separator = React.forwardRef<
       />
       {children && (
         <React.Fragment>
-          <span className="mx-2 text-sm leading-none text-zinc-400 dark:text-zinc-600">
+          <span className="mx-2 text-sm leading-none text-neutral-700">
             {children}
           </span>
           <SeparatorPrimitive.Root
@@ -47,14 +47,7 @@ const Separator = React.forwardRef<
 
 const SeparatorStyles = tv({
   base: [
-    "pointer-events-none",
-    "relative",
-    "flex",
-    "flex-1",
-    "shrink-0",
-    "items-center",
-    "bg-zinc-950/10",
-    "dark:bg-white/10",
+    "pointer-events-none relative flex flex-1 shrink-0 items-center bg-neutral-700",
   ],
   variants: {
     orientation: {

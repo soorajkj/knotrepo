@@ -49,7 +49,7 @@ export default Tabs;
 
 const TabsTriggerStyles = tv({
   base: [
-    "whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium transition data-[state=active]:text-white disabled:pointer-events-none disabled:opacity-5 dark:data-[state=active]:bg-white/5 dark:hover:bg-white/5",
+    "whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium transition disabled:pointer-events-none disabled:opacity-5 data-[state=active]:text-white dark:hover:bg-white/5 dark:data-[state=active]:bg-white/5",
   ],
   variants: {},
 });

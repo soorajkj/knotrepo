@@ -3,41 +3,28 @@
 import * as React from "react";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { cva, type VariantProps } from "class-variance-authority";
-import { useTheme } from "next-themes";
-import { Toaster as Sonner } from "sonner";
+import { tv } from "tailwind-variants";
 import { cn } from "~utils/classnames";
 import Icon from "~components/core/icon";
 
-const ToastProvider = ToastPrimitives.Provider;
+interface ToastRootProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof ToastRootStyles> {}
 
-const ToastViewport = React.forwardRef<
-  React.ElementRef<typeof ToastPrimitives.Viewport>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport> &
-    VariantProps<typeof ToastViewportStyles>
->(({ className, ...props }, ref) => (
-  <ToastPrimitives.Viewport
-    ref={ref}
-    className={cn(ToastViewportStyles({ className }))}
-    {...props}
-  />
-));
-
-const ToastRoot = React.forwardRef<
-  React.ElementRef<typeof ToastPrimitives.Root>,
-  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> &
-    VariantProps<typeof ToastRootStyles>
->(({ className, variant = "default", ...props }, ref) => {
-  return (
-    <ToastPrimitives.Root
-      ref={ref}
-      className={cn(ToastRootStyles({ variant, className }))}
-      {...props}
-    />
-  );
-});
+const ToastRoot = React.forwardRef<HTMLDivElement, ToastRootProps>(
+  ({ className, variant = "info", ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(ToastRootStyles({ variant, className }))}
+        {...props}
+      />
+    );
+  }
+);
 
 const ToastAction = React.forwardRef<
-  React.ElementRef<typeof ToastPrimitives.Action>,
+  React.ComponentRef<typeof ToastPrimitives.Action>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Action> &
     VariantProps<typeof ToastActionStyles>
 >(({ className, ...props }, ref) => (
@@ -49,7 +36,7 @@ const ToastAction = React.forwardRef<
 ));
 
 const ToastClose = React.forwardRef<
-  React.ElementRef<typeof ToastPrimitives.Close>,
+  React.ComponentRef<typeof ToastPrimitives.Close>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Close> &
     VariantProps<typeof ToastCloseStyles>
 >(({ className, ...props }, ref) => (
@@ -64,18 +51,21 @@ const ToastClose = React.forwardRef<
 ));
 
 const ToastTitle = React.forwardRef<
-  React.ElementRef<typeof ToastPrimitives.Title>,
+  React.ComponentRef<typeof ToastPrimitives.Title>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title>
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Title
     ref={ref}
-    className={cn("text-sm font-semibold [&+div]:text-sm", className)}
+    className={cn(
+      "text-sm font-semibold text-neutral-200 [&+div]:text-sm",
+      className
+    )}
     {...props}
   />
 ));
 
 const ToastDescription = React.forwardRef<
-  React.ElementRef<typeof ToastPrimitives.Description>,
+  React.ComponentRef<typeof ToastPrimitives.Description>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Description>
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Description
@@ -85,28 +75,7 @@ const ToastDescription = React.forwardRef<
   />
 ));
 
-type ToasterProps = React.ComponentProps<typeof Sonner>;
-
-export const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme();
-
-  return (
-    <Sonner
-      theme={theme as ToasterProps["theme"]}
-      className="toaster group"
-      duration={20000}
-      toastOptions={{
-        className: "items-start shadow-none",
-        classNames: { title: "text-sm leading-none" },
-      }}
-      {...props}
-    />
-  );
-};
-
-export type ToastRootProps = React.ComponentPropsWithoutRef<typeof ToastRoot>;
 export type ToastActionElement = React.ReactElement<typeof ToastAction>;
-ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
 ToastRoot.displayName = ToastPrimitives.Root.displayName;
 ToastAction.displayName = ToastPrimitives.Action.displayName;
 ToastClose.displayName = ToastPrimitives.Close.displayName;
@@ -114,8 +83,6 @@ ToastTitle.displayName = ToastPrimitives.Title.displayName;
 ToastDescription.displayName = ToastPrimitives.Description.displayName;
 
 const Toast = {
-  ToastProvider,
-  ToastViewport,
   ToastRoot,
   ToastTitle,
   ToastDescription,
@@ -125,90 +92,31 @@ const Toast = {
 
 export default Toast;
 
-const ToastViewportStyles = cva([
-  "fixed",
-  "top-0",
-  "z-[100]",
-  "flex",
-  "max-h-screen",
-  "w-full",
-  "flex-col-reverse",
-  "p-4",
-  "sm:bottom-0",
-  "sm:right-0",
-  "sm:top-auto",
-  "sm:flex-col",
-  "md:max-w-md",
-]);
-
-const ToastRootStyles = cva(
-  [
-    "group",
-    "pointer-events-auto",
-    "relative",
-    "flex",
-    "w-full",
-    "items-center",
-    "justify-between",
-    "space-x-2",
-    "overflow-hidden",
-    "rounded-md",
-    "border",
-    "p-4",
-    "pr-6",
-    "shadow-sm",
-    "transition-all",
-    "data-[swipe=cancel]:translate-x-0",
-    "data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)]",
-    "data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)]",
-    "data-[swipe=move]:transition-none",
-    "data-[state=open]:animate-in",
-    "data-[state=closed]:animate-out",
-    "data-[swipe=end]:animate-out",
-    "data-[state=closed]:fade-out-80",
-    "data-[state=closed]:slide-out-to-right-full",
-    "data-[state=open]:slide-in-from-top-full",
-    "data-[state=open]:sm:slide-in-from-bottom-full",
+const ToastRootStyles = tv({
+  base: [
+    "flex w-fit flex-col gap-2 rounded-xl border border-neutral-800 bg-neutral-900 p-4 shadow-sm",
   ],
-  {
-    variants: {
-      variant: {
-        default: ["bg-white", "text-zinc-800", "border-zinc-200"],
-        success: ["bg-white", "text-teal-800", "border-teal-200"],
-        destructive: ["bg-white", "text-red-800", "border-red-200"],
-      },
+  variants: {
+    variant: {
+      info: "border-blue-200 bg-blue-50 text-blue-900 dark:border-blue-700 dark:bg-blue-950 dark:text-blue-100",
+      success:
+        "border-green-200 bg-green-50 text-green-900 dark:border-green-700 dark:bg-green-950 dark:text-green-100",
+      error: "border-purple-200 bg-purple-50 text-purple-900",
+      warning:
+        "border-yellow-200 bg-yellow-50 text-yellow-900 dark:border-yellow-700 dark:bg-yellow-950 dark:text-yellow-100",
     },
-  }
-);
+  },
+});
 
-const ToastActionStyles = cva([
-  "hover:bg-secondary",
-  "focus:ring-ring",
-  "group-[.destructive]:border-muted/40",
-  "group-[.destructive]:hover:border-destructive/30",
-  "group-[.destructive]:hover:bg-destructive",
-  "group-[.destructive]:hover:text-destructive-foreground",
-  "group-[.destructive]:focus:ring-destructive",
-  "inline-flex",
-  "h-8",
-  "shrink-0",
-  "items-center",
-  "justify-center",
-  "rounded-md",
-  "border",
-  "bg-transparent",
-  "px-3",
-  "text-sm",
-  "font-medium",
-  "transition-colors",
-  "focus:outline-none",
-  "focus:ring-1",
-  "disabled:pointer-events-none disabled:opacity-50",
-]);
+export type ToastVariants = keyof typeof ToastRootStyles.variants.variant;
+
+const ToastActionStyles = tv({
+  base: [
+    "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium disabled:pointer-events-none disabled:opacity-50",
+  ],
+});
 
 const ToastCloseStyles = cva([
-  "text-foreground/50",
-  "hover:text-foreground",
   "absolute",
   "right-1",
   "top-1",
@@ -220,8 +128,4 @@ const ToastCloseStyles = cva([
   "focus:outline-none",
   "focus:ring-1",
   "group-hover:opacity-100",
-  "group-[.destructive]:text-red-300",
-  "group-[.destructive]:hover:text-red-50",
-  "group-[.destructive]:focus:ring-red-400",
-  "group-[.destructive]:focus:ring-offset-red-600",
 ]);

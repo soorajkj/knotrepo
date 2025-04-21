@@ -1,6 +1,6 @@
 import * as React from "react";
-import FormCard from "~components/auth/FormCard";
-import SigninForm from "~components/auth/SigninForm";
+import FormCard from "~components/auth/form-card";
+import SigninForm from "~components/auth/signin-form";
 
 export default function Page() {
   return (

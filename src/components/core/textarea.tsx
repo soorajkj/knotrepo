@@ -21,7 +21,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
 const TextareaStyles = tv({
   base: [
-    "peer flex min-h-20 w-full grow resize-none rounded-lg border border-zinc-950/10 bg-transparent px-3 py-2 text-sm leading-6 text-zinc-950 shadow-sm transition-colors duration-100 hover:border-zinc-950/20 focus:outline-none dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:border-white/20",
+    "peer flex min-h-28 w-full grow resize-y overflow-hidden rounded-lg border border-neutral-700 bg-neutral-800/80 px-3 py-2 text-base/6 leading-6 text-neutral-200 outline-none transition duration-100 placeholder:text-neutral-600 focus:outline-none disabled:opacity-50 aria-invalid:border-red-500 sm:text-sm/6",
   ],
 });
 

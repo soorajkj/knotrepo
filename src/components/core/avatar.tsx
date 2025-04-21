@@ -10,7 +10,7 @@ interface AvatarRootProps
     VariantProps<typeof AvatarRootStyles> {}
 
 const AvatarRoot = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
+  React.ComponentRef<typeof AvatarPrimitive.Root>,
   AvatarRootProps
 >((props, ref) => {
   const { children, size = "md", className, ...rest } = props;
@@ -27,7 +27,7 @@ const AvatarRoot = React.forwardRef<
 });
 
 const AvatarFallback = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Fallback>,
+  React.ComponentRef<typeof AvatarPrimitive.Fallback>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> &
     VariantProps<typeof AvatarFallbackStyles>
 >((props, ref) => {
@@ -43,7 +43,7 @@ const AvatarFallback = React.forwardRef<
 });
 
 const AvatarImage = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentRef<typeof AvatarPrimitive.Image>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> &
     VariantProps<typeof AvatarImageStyles>
 >((props, ref) => {
@@ -61,17 +61,15 @@ const AvatarImage = React.forwardRef<
 
 const AvatarRootStyles = tv({
   base: [
-    "relative inline-flex aspect-square shrink-0 items-center justify-center overflow-hidden rounded-full dark:bg-zinc-700",
+    "relative inline-flex aspect-square shrink-0 items-center justify-center overflow-hidden rounded-full bg-emerald-700 text-white",
   ],
   variants: {
     size: {
-      xxs: ["h-4", "min-w-4", "text-xxs"],
       xs: ["h-6", "min-w-6", "text-xs"],
       sm: ["h-8", "min-w-8", "text-sm"],
       md: ["h-10", "min-w-10", "text-base"],
       lg: ["h-12", "min-w-12", "text-lg"],
       xl: ["h-14", "min-w-14", "text-xl"],
-      xxl: ["h-16", "min-w-16", "text-2xl"],
     },
   },
 });

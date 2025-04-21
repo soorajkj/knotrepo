@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id              String            @id
+  id              String    @id
   name            String
   email           String
   emailVerified   Boolean
@@ -16,12 +16,10 @@ model User {
   createdAt       DateTime
   updatedAt       DateTime
   username        String?
+  displayUsername String?
   sessions        Session[]
   accounts        Account[]
-  Profile         Profile[]
-  SocialMediaLink SocialMediaLink[]
-
-  displayUsername String?
+  handles         Handle[]
 
   @@unique([email])
   @@unique([username])
@@ -73,43 +71,20 @@ model Verification {
   @@map("verification")
 }
 
-model Profile {
-  id        String   @id
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  biography String?
-  image     String?
-  location  String?
-  email     String?
-  phone     String?
-  website   String?
-  createdAt DateTime
-  updatedAt DateTime
-
-  @@map("profile")
-}
-
-model SocialPlatform {
-  id              String            @id
-  name            String            @unique
-  icon            String?
-  url             String?
-  SocialMediaLink SocialMediaLink[]
-
-  @@map("social_platform")
-}
-
-model SocialMediaLink {
-  id         String         @id
+model Handle {
+  id         String    @id @default(cuid())
   userId     String
-  user       User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  platformId String
-  platform   SocialPlatform @relation(fields: [platformId], references: [id])
-  url        String
-  visibility Boolean?       @default(true)
-  createdAt  DateTime       @default(now())
-  updatedAt  DateTime       @updatedAt
+  platform   String
+  handle     String
+  icon       String?
+  visibility Boolean   @default(true)
+  sortOrder  Int       @default(0)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @updatedAt
 
-  @@unique([userId, platformId])
-  @@map("social_media_link")
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, platform])
+  @@index([userId])
+  @@map("handle")
 }

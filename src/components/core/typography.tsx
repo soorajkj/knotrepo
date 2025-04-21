@@ -1,5 +1,5 @@
-import { forwardRef } from "react";
-import { cva, VariantProps } from "class-variance-authority";
+import { forwardRef, type JSX } from "react";
+import { tv, VariantProps } from "tailwind-variants";
 import { cn } from "~utils/classnames";
 
 type TitleStyleProps = VariantProps<typeof TitleStyles>;
@@ -72,7 +72,8 @@ const Text = forwardRef<HTMLParagraphElement, TextProps>((props, ref) => {
   );
 });
 
-const TitleStyles = cva([], {
+const TitleStyles = tv({
+  base: [""],
   variants: {
     level: {
       1: "text-7xl",
@@ -91,7 +92,8 @@ const TitleStyles = cva([], {
   },
 });
 
-const TextStyles = cva([""], {
+const TextStyles = tv({
+  base: [""],
   variants: {
     size: {
       xl: "text-xl",

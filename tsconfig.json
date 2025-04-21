@@ -12,7 +12,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [{ "name": "next" }],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "baseUrl": ".",
     "paths": {
       "~components/core/*": ["./src/components/core/*"],
@@ -23,6 +27,7 @@
       "~components/www/*": ["./src/components/_www/*"],
       "~components/*": ["./src/components/*"],
       "~types/*": ["./src/types/*"],
+      "~server/*": ["./src/server/*"],
       "~schemas/*": ["./src/schemas/*"],
       "~utils/*": ["./src/utils/*"],
       "~lib/*": ["./src/lib/*"],
@@ -30,7 +35,8 @@
       "~public/*": ["./public/*"],
       "~styles/*": ["./src/styles/*"],
       "~*": ["./src/*"]
-    }
+    },
+    "target": "ES2017"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

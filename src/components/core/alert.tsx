@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { tv, VariantProps } from "tailwind-variants";
 import { cn } from "~utils/classnames";
 import Icon, { icons } from "~components/core/icon";
 
@@ -58,8 +58,8 @@ const AlertDescription = React.forwardRef<
   <div ref={ref} className={cn("text-sm font-normal", className)} {...props} />
 ));
 
-const AlertStyles = cva(
-  [
+const AlertStyles = tv({
+  base: [
     "relative",
     "flex",
     "gap-4",
@@ -70,29 +70,15 @@ const AlertStyles = cva(
     "[&>svg]:size-6",
     "[&_svg]:p-1",
     "[&_svg]:rounded",
-    "[&_svg]:flex-shrink-0",
+    "[&_svg]:shrink-0",
   ],
-  {
-    variants: {
-      variant: {
-        default: [
-          "bg-alternative",
-          "text-foreground",
-          "border-alternative",
-          "[&_svg]:bg-foreground",
-          "[&_svg]:text-background",
-        ],
-        destructive: [
-          "bg-destructive-200",
-          "text",
-          "border-destructive-400",
-          "[&_svg]:bg-destructive-600",
-          "[&_svg]:text-destructive-200",
-        ],
-      },
+  variants: {
+    variant: {
+      default: [],
+      destructive: [],
     },
-  }
-);
+  },
+});
 
 AlertRoot.displayName = "AlertRoot";
 AlertTitle.displayName = "AlertTitle";

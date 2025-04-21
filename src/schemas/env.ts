@@ -11,7 +11,4 @@ export const envSchema = z.object({
   RESEND_API_KEY: z.string().min(1, "Required"),
 });
 
-export const safeEnv = envSchema.safeParse(process.env);
-if (!safeEnv.success) throw new Error(safeEnv.error.message);
-
 export type envSchemaType = z.infer<typeof envSchema>;

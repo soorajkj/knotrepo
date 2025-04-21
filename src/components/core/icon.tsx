@@ -1,7 +1,8 @@
+"use client";
+
 import * as React from "react";
-import * as heroIcons from "@heroicons/react/20/solid";
 import * as AccessibleIconPrimitive from "@radix-ui/react-accessible-icon";
-import { icons as lucideIcons, LucideProps } from "lucide-react";
+import { icons as lucideIcons, type LucideProps } from "lucide-react";
 import discord from "~public/icons/media/discord.svg";
 import dribble from "~public/icons/media/dribble.svg";
 import facebook from "~public/icons/media/facebook.svg";
@@ -9,6 +10,7 @@ import github from "~public/icons/media/github.svg";
 import google from "~public/icons/media/google.svg";
 import instagram from "~public/icons/media/instagram.svg";
 import linkedin from "~public/icons/media/linkedin.svg";
+import spotify from "~public/icons/media/spotify.svg";
 import telegram from "~public/icons/media/telegram.svg";
 import tinder from "~public/icons/media/tinder.svg";
 import twitch from "~public/icons/media/twitch.svg";
@@ -28,12 +30,12 @@ export const mediaIcons = {
   MDFacebook: facebook,
   MDDiscord: discord,
   MDGoogle: google,
+  MDSpotify: spotify,
 };
 
 export const icons = {
   ...lucideIcons,
   ...mediaIcons,
-  ...heroIcons,
 };
 
 export type IconTypes = keyof typeof icons;

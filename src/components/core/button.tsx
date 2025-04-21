@@ -5,8 +5,9 @@ import { cn } from "~utils/classnames";
 
 interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    Omit<VariantProps<typeof ButtonStyles>, "disabled"> {
+    VariantProps<typeof ButtonStyles> {
   asChild?: boolean;
+  iconOnly?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -15,7 +16,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       asChild,
       type = "button",
-      variant = "primary",
+      variant = "secondary",
       size = "md",
       iconOnly = false,
       className,
@@ -45,48 +46,23 @@ export default Button;
 
 const ButtonStyles = tv({
   base: [
-    "group inline-flex select-none items-center justify-center rounded-lg border text-sm font-medium leading-6 transition-all duration-300 disabled:pointer-events-none disabled:opacity-50",
+    "group inline-flex select-none items-center justify-center whitespace-nowrap rounded-lg border border-transparent text-sm font-normal leading-6 transition duration-300 disabled:pointer-events-none disabled:opacity-0 [&>svg]:size-4",
   ],
   variants: {
     variant: {
-      primary: [
-        "border-zinc-950/90 bg-zinc-900 text-center text-white dark:border-white/5 dark:bg-zinc-600 dark:text-white",
-      ],
-      secondary: [
-        "border-transparent bg-zinc-100 text-zinc-900 hover:bg-zinc-200 dark:border-zinc-800 dark:bg-zinc-800/40 dark:text-zinc-400 dark:ring-inset dark:ring-zinc-800 dark:hover:bg-zinc-800 dark:hover:text-zinc-300",
-      ],
-      outline: [
-        "border-zinc-900/10 bg-transparent text-zinc-600 hover:bg-zinc-900/10 hover:text-zinc-900 dark:border-white/10 dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white",
-      ],
-      ghost: [
-        "border-transparent bg-transparent text-zinc-600 hover:bg-zinc-900/10 hover:text-zinc-900 dark:border-transparent dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white",
-      ],
+      primary: "bg-emerald-600 text-white shadow-inner shadow-emerald-700",
+      secondary: "bg-white text-neutral-900",
+      destructive: "",
+      outline: "border-neutral-700/60 bg-neutral-900/60 text-white",
+      ghost: "text-white",
     },
     size: {
-      sm: "h-9 gap-2 px-3 py-2 [&>svg]:size-4",
-      md: "h-10 gap-2 px-3.5 py-2.5 [&>svg]:size-4",
-      lg: "h-11 gap-1.5 px-4 py-2.5 [&>svg]:size-4",
+      sm: "h-8 gap-1 p-2 px-3",
+      md: "h-9 gap-1 p-2.5 px-3.5",
+      lg: "h-10 gap-1.5 px-4 py-2.5",
     },
     iconOnly: {
-      true: null,
-      false: null,
+      true: "aspect-square p-0",
     },
   },
-  compoundVariants: [
-    {
-      iconOnly: true,
-      size: "sm",
-      className: "size-9 p-0",
-    },
-    {
-      iconOnly: true,
-      size: "md",
-      className: "size-10 p-0",
-    },
-    {
-      iconOnly: true,
-      size: "lg",
-      className: "size-11 p-0",
-    },
-  ],
 });

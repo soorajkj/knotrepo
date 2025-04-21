@@ -7,14 +7,14 @@
   "editor.wordWrap": "wordWrapColumn",
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "scss.validate": false,
+  "css.validate": false,
   "tailwindCSS.experimental.classRegex": [
     ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
   },
-  "git.decorations.enabled": false,
+  "git.decorations.enabled": true,
   "scm.diffDecorationsGutterVisibility": "hover",
   "svg.preview.background": "editor"
 }

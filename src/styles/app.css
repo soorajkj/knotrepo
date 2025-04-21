@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  font-family: inherit;
+}
+
+input[type="file"]::file-selector-button {
+  padding: 0 8px 0 0;
+  margin-right: 8px;
+  border: none;
+  border-right: 1px solid hsla(0, 0, 0, 0.2);
+  background: transparent;
+}
+
+@layer base {
+  table {
+    @apply table
+    w-full
+    table-fixed
+    border-separate
+    border-spacing-px
+    divide-y
+    divide-neutral-800
+    bg-neutral-800;
+  }
+
+  thead {
+    @apply sticky
+    top-16
+    z-10
+    h-auto
+    w-full;
+  }
+
+  th {
+    @apply relative
+    z-0
+    bg-neutral-900
+    p-4
+    text-left
+    text-base
+    font-normal
+    text-neutral-200
+    before:absolute
+    before:-inset-px
+    before:-z-10
+    before:border
+    before:border-neutral-800
+    before:bg-neutral-900;
+  }
+
+  tbody th {
+    @apply text-left
+    text-base
+    font-medium
+    text-neutral-200;
+  }
+
+  tbody td {
+    @apply relative
+    bg-neutral-900
+    p-4
+    text-center
+    text-sm
+    font-normal;
+  }
+}

@@ -20,7 +20,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-50 grid size-full flex-col items-center overflow-hidden overflow-y-auto bg-zinc-950/25 p-4 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 dark:bg-zinc-950/50 sm:p-6",
+      "fixed inset-0 z-50 grid size-full flex-col items-center overflow-hidden overflow-y-auto bg-neutral-900/25 p-4 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 dark:bg-neutral-900/50 sm:p-6",
       className
     )}
     {...props}
@@ -40,7 +40,7 @@ const DialogContent = React.forwardRef<
       <DialogPrimitive.Content
         ref={ref}
         className={cn(
-          "relative mx-auto flex h-max w-full min-w-0 rounded-2xl bg-white bg-zinc-950/25 ring-1 ring-zinc-950/10 data-[state=closed]:duration-200 data-[state=open]:duration-200 data-[state=closed]:ease-in data-[state=open]:ease-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-top-6 data-[state=open]:slide-in-from-top-6 dark:bg-zinc-900 dark:ring-white/10",
+          "relative mx-auto flex h-max w-full min-w-0 rounded-2xl bg-neutral-900/25 bg-white ring-1 ring-neutral-900/10 data-[state=closed]:duration-200 data-[state=open]:duration-200 data-[state=closed]:ease-in data-[state=open]:ease-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-top-6 data-[state=open]:slide-in-from-top-6 dark:bg-neutral-900 dark:ring-white/10",
           className
         )}
         {...props}

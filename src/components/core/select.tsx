@@ -17,14 +17,14 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "peer flex h-10 w-full grow items-center gap-2 rounded-lg border border-zinc-950/10 bg-transparent px-3 py-2 text-sm leading-6 text-zinc-950 shadow-sm transition-colors duration-100 hover:border-zinc-950/20 focus:outline-none dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:border-white/20",
+      "peer flex h-10 w-full items-center gap-2 rounded-lg border border-neutral-900/10 bg-transparent px-3 py-2 text-sm leading-6 text-neutral-900 shadow-sm transition-colors duration-100 hover:border-neutral-900/20 focus:outline-none dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:border-white/20",
       className
     )}
     {...props}
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="h-4 w-4 opacity-50" />
+      <ChevronDown className="size-4 opacity-50" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -57,7 +57,7 @@ const SelectScrollDownButton = React.forwardRef<
     )}
     {...props}
   >
-    <ChevronUp className="h-4 w-4" />
+    <ChevronUp className="size-4" />
   </SelectPrimitive.ScrollDownButton>
 ));
 
@@ -107,9 +107,9 @@ const SelectItem = React.forwardRef<
     )}
     {...props}
   >
-    <span className="absolute right-2 flex h-4 w-4 items-center justify-center">
+    <span className="absolute right-2 flex size-4 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
-        <Check className="text-brand-500 h-4 w-4" />
+        <Check className="size-4" />
       </SelectPrimitive.ItemIndicator>
     </span>
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
@@ -151,7 +151,7 @@ const Select = {
 
 const SelectContentStyles = tv({
   base: [
-    "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border border-gray-300 border-zinc-950/10 bg-white bg-zinc-950/25 text-zinc-950 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:bg-white/5 dark:bg-zinc-800 dark:text-white dark:hover:border-white/20",
+    "relative z-50 max-h-96 min-w-32 overflow-hidden rounded-md border border-neutral-300 bg-white text-neutral-900 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 dark:bg-neutral-800 dark:text-white dark:hover:border-white/20",
   ],
   variants: {
     position: {

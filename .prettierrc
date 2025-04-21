@@ -11,6 +11,7 @@
     "<THIRD_PARTY_MODULES>",
     "^~public/(.*)$",
     "^~types/(.*)$",
+    "^~server/(.*)$",
     "^~schemas/(.*)$",
     "^~lib/(.*)$",
     "^~utils/(.*)$",

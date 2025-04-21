@@ -1,10 +1,10 @@
-import * as React from "react";
-import TempForm from "~components/dashboard/TempForm";
+import React from "react";
+import Analytics from "~components/dashboard/analytics";
 
 export default function Page() {
   return (
     <React.Fragment>
-      <TempForm />
+      <Analytics />
     </React.Fragment>
   );
 }
